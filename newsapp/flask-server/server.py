@@ -46,10 +46,10 @@ def News():
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
 
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything(q='language',
+    top_headlines = newsapi.get_everything(q='youtube',
                                             language='en',
                                             sort_by='relevancy',
-                                            from_param='2023-06-09' )["articles"][:75]
+                                            from_param='2023-06-10' )["articles"][:75]
     #print(top_headlines)
     list1 = []
     list2 = []
