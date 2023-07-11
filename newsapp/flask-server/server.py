@@ -8,6 +8,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from datetime import timedelta, date
+from textblob import TextBlob
 
 
 #nltk.download('all')
@@ -38,7 +39,7 @@ def get_sentiment(text):
 
     scores = analyzer.polarity_scores(text)
 
-    sentiment = scores['compound']
+    sentiment = round((scores['compound'] + TextBlob(text).sentiment.polarity)/2,3)
 
     return sentiment
 
@@ -53,7 +54,7 @@ def News():
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
 
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything(q='India',
+    top_headlines = newsapi.get_everything( q='Georgia Tech',
                                             language='en',
                                             sort_by='relevancy',
                                             from_param=str(days_ago(30)))["articles"][:75]
@@ -72,7 +73,7 @@ def News():
     
     top_headlines = sorted(top_headlines, key= lambda x: x["sentiment"], reverse=True)
 
-    data = {"articles": top_headlines[:20]}
+    data = {"articles": top_headlines[:40]}
     return data
 
 
