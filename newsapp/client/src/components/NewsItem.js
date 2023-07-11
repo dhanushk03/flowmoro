@@ -1,10 +1,11 @@
 import React from "react"
+import './newsItem.css'
 
 const NewsItem = (props) => {
     return (
         <div className="news-app">
             <div className = "news-item">
-                <img className="newsImg" src = {props.urlToImage} alt = {props.urlToImage}/>
+                <img className="news-img" src = {props.urlToImage} alt = {props.urlToImage}/>
                 <h3>
                     <a href = {props.url}>
                         {props.title}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NewsItem from "./components/NewsItem"
+import './App.css';
 
 function App(){
 
@@ -30,7 +31,7 @@ function App(){
   />);
 
   return (
-      <div>
+      <div className = "App">
          {mapped}
       </div>
     )

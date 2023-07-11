@@ -53,7 +53,7 @@ def News():
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
 
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything(q='youtube',
+    top_headlines = newsapi.get_everything(q='India',
                                             language='en',
                                             sort_by='relevancy',
                                             from_param=str(days_ago(30)))["articles"][:75]
@@ -63,7 +63,8 @@ def News():
     
     for ar in top_headlines:
         currSentence = preprocess_text(ar["description"])
-        ar["sentiment"] = get_sentiment(currSentence)
+        currTitle = preprocess_text(ar["title"])
+        ar["sentiment"] = round((get_sentiment(currSentence) + get_sentiment(currTitle))/2, 2)
         
 
     #results = [val for (_, val) in sorted(zip(list2, list1), key=lambda x: x[0])]
@@ -71,7 +72,7 @@ def News():
     
     top_headlines = sorted(top_headlines, key= lambda x: x["sentiment"], reverse=True)
 
-    data = {"articles": top_headlines}
+    data = {"articles": top_headlines[:20]}
     return data
 
 
