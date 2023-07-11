@@ -7,6 +7,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from datetime import timedelta, date
+
+
 #nltk.download('all')
 analyzer = SentimentIntensityAnalyzer()
 
@@ -39,6 +42,10 @@ def get_sentiment(text):
 
     return sentiment
 
+#returns the formated date x days ago
+
+def days_ago(n):
+  return date.today() - timedelta(n)
  
 def News():
      
@@ -49,7 +56,7 @@ def News():
     top_headlines = newsapi.get_everything(q='youtube',
                                             language='en',
                                             sort_by='relevancy',
-                                            from_param='2023-06-10' )["articles"][:75]
+                                            from_param=str(days_ago(30)))["articles"][:75]
     #print(top_headlines)
     list1 = []
     list2 = []
