@@ -4,8 +4,8 @@ import "./CountdownTimer.css";
 
 const defaultRemainingTime = {
     seconds: '00',
-    minutes: '00',
-    hours: '01',
+    minutes: '25',
+    hours: '00',
 }
 
 const CountdownTimer = (props) => {
@@ -21,7 +21,6 @@ const CountdownTimer = (props) => {
     function updateRemainingTime() {
         //case1: seconds goes from 00 to 59
         //case2: minutes goes from 00 to 59
-        //case3: hours goes from 00 to 59
         if (remainingTime.seconds == "00" && remainingTime.minutes == "00" && remainingTime.hours == "00") {
             return;
         }
@@ -62,11 +61,10 @@ const CountdownTimer = (props) => {
     return (
         <div className="countdown-timer">
             <span>{remainingTime.hours}</span>
-            <span>HOURS</span>
+            <span>:</span>
             <span>{remainingTime.minutes}</span>
-            <span>MINUTES</span>
+            <span>:</span>
             <span>{remainingTime.seconds}</span>
-            <span>SECONDS </span>
         </div>
     )
 }
