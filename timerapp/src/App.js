@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
+import CountdownTimer from "./Components/CountdownTimer/CountdownTimer.js";
 
 function App() {
   return (
     <div className="App">
-      <h1>{hours}:{minutes}:{seconds}</h1>
+      <CountdownTimer />
     </div>
   );
 }
