@@ -4,8 +4,8 @@ import "./CountdownTimer.css";
 
 const defaultRemainingTime = {
     seconds: '00',
-    minutes: '25',
-    hours: '00',
+    minutes: '02',
+    hours: '01',
 }
 
 const CountdownTimer = (props) => {
@@ -77,7 +77,7 @@ const CountdownTimer = (props) => {
             </div>
             <div>
                 <button onClick={() => setPaused(!paused)} className="playbutton">
-                    {paused? <p>Start</p> : <p>Pause</p>}
+                    {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                 </button>
             </div>
         </div>

@@ -1,7 +1,7 @@
 .countdown-timer {
     width: 400px;
     height: 400px;
-    border: 3px solid grey;
+    border: 6px solid white;
     border-radius: 50%;
     box-shadow: black;
     /**background: linear-gradient(darkmagenta, lightblue);**/
@@ -17,8 +17,11 @@
 
 .playbutton {
     width: 100px;
-    height: 70px;
-    border-radius: 10px;
+    height: 100px;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: transparent;
+    padding-left: 7px;
 
     display: flex;
     justify-content: center;
@@ -30,6 +33,29 @@
     margin-top: 12%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.playbutton:hover {
+    background: grey;
+    cursor: pointer;
+}
+
+#startBtn {
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 20px 0px 20px 40px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+#pauseBtn {
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border-style: double;
+    border-width: 0px 0px 0px 37px;
+    border-color: #ffffff;
 }
 
 span {
