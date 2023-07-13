@@ -75,9 +75,9 @@ const CountdownTimer = (props) => {
                 <span>:</span>
                 <span>{remainingTime.seconds}</span>
             </div>
-            <div className="playbutton">
-                <button onClick={() => setPaused(!paused)}>
-                {paused? <p>Start</p> : <p>Pause</p>}
+            <div>
+                <button onClick={() => setPaused(!paused)} className="playbutton">
+                    {paused? <p>Start</p> : <p>Pause</p>}
                 </button>
             </div>
         </div>
