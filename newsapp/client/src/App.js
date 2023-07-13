@@ -25,15 +25,19 @@ function App(){
     description={article.description}
     publishedAt={article.publishedAt}
     sentiment={article.sentiment}
+    source={article.source.name}
     title={article.title}
     url={article.url}
     urlToImage={article.urlToImage}
   />);
 
   return (
-      <div className = "App">
+    <main>
+      <div className = "cards-container container flex">
          {mapped}
       </div>
+    </main>
+      
     )
 }
 

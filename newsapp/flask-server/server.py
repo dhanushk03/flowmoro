@@ -54,7 +54,7 @@ def News():
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
 
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything( q='Georgia Tech',
+    top_headlines = newsapi.get_everything( q='Business',
                                             language='en',
                                             sort_by='relevancy',
                                             from_param=str(days_ago(30)))["articles"][:75]
@@ -62,10 +62,20 @@ def News():
     list1 = []
     list2 = []
     
-    for ar in top_headlines:
-        currSentence = preprocess_text(ar["description"])
-        currTitle = preprocess_text(ar["title"])
-        ar["sentiment"] = round((get_sentiment(currSentence) + get_sentiment(currTitle))/2, 2)
+    i = 0
+    for ar in top_headlines[:]:
+        if type(ar["description"]) is None or type(ar["title"]) is None or ar["urlToImage"] is None:
+            top_headlines.pop(i)
+            i-=1
+        else:
+            currSentence = preprocess_text(ar["description"])
+            currTitle = preprocess_text(ar["title"])
+            ar["sentiment"] = round((get_sentiment(currSentence) + get_sentiment(currTitle))/2, 2)
+            if ar["sentiment"] < 0.25:
+                top_headlines.pop(i)
+                i-=1
+        
+        i+=1    
         
 
     #results = [val for (_, val) in sorted(zip(list2, list1), key=lambda x: x[0])]
