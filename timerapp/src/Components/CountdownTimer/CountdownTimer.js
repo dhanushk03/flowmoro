@@ -9,14 +9,22 @@ const defaultRemainingTime = {
 }
 
 const CountdownTimer = (props) => {
+    /**
+     * Want to calculate total number of seconds and store it.
+     * As the timer ticks down, want to change the percentage of the arc colored white proportional to the amount of time remaining.
+     * I want to provide an input form for the user to set their preferred time studying.
+     */
     const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
+    const [paused, setPaused] = useState(true);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            updateRemainingTime()
+            if (!paused) {
+                updateRemainingTime();
+            }
         }, 1000);
         return () => clearTimeout(intervalId);
-    }, [remainingTime]);
+    }, [remainingTime, paused]);
 
     function updateRemainingTime() {
         //case1: seconds goes from 00 to 59
@@ -59,13 +67,21 @@ const CountdownTimer = (props) => {
     }
 
     return (
-        <div className="countdown-timer">
-            <span>{remainingTime.hours}</span>
-            <span>:</span>
-            <span>{remainingTime.minutes}</span>
-            <span>:</span>
-            <span>{remainingTime.seconds}</span>
+        <div className="wrapper">
+            <div className="countdown-timer">
+                <span>{remainingTime.hours}</span>
+                <span>:</span>
+                <span>{remainingTime.minutes}</span>
+                <span>:</span>
+                <span>{remainingTime.seconds}</span>
+            </div>
+            <div className="playbutton">
+                <button onClick={() => setPaused(!paused)}>
+                {paused? <p>Start</p> : <p>Pause</p>}
+                </button>
+            </div>
         </div>
+        
     )
 }
 
