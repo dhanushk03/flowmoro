@@ -4,8 +4,8 @@ import "./CountdownTimer.css";
 
 const defaultRemainingTime = {
     seconds: '00',
-    minutes: '02',
-    hours: '01',
+    minutes: '05',
+    hours: '00',
 }
 
 const CountdownTimer = (props) => {
@@ -66,6 +66,11 @@ const CountdownTimer = (props) => {
         }
     }
 
+    function resetTime() {
+        setRemainingTime(defaultRemainingTime);
+        setPaused(true);
+    }
+
     return (
         <div className="wrapper">
             <div className="countdown-timer">
@@ -75,9 +80,12 @@ const CountdownTimer = (props) => {
                 <span>:</span>
                 <span>{remainingTime.seconds}</span>
             </div>
-            <div>
+            <div className="buttons">
                 <button onClick={() => setPaused(!paused)} className="playbutton">
                     {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
+                </button>
+                <button onClick={resetTime} className="resetbutton">
+                    <p>RESET</p>
                 </button>
             </div>
         </div>
