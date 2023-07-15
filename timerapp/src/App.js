@@ -1,11 +1,12 @@
 import './App.css';
 import React from "react";
-import { useState } from "react";
 import CountdownTimer from "./Components/CountdownTimer/CountdownTimer.js";
+import Navbar from "./Components/Navbar.js"
 
 function App() {
   return (
-    <div className="App">
+    <div className="flap">
+      <Navbar />
       <CountdownTimer />
     </div>
   );

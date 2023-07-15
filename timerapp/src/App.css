@@ -1,15 +1,47 @@
-.App {
+.flap {
   width: 100vw;
   height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /**margin: 0;**/
+  /**padding: 0;**/
+  /**display: flex;**/
+  /**align-items: center;**/
+  /**justify-content: center;**/
   /**background: linear-gradient(darkmagenta, lightblue);**/
   background: linear-gradient(90deg, #0062ff, #da61ff);
   background-size: 400% 400%;
   animation: gradient_anim 23s ease infinite;
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 30px 25px;
+}
+
+.navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar li {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: .25rem;
+}
+
+.navbar li:hover {
+  color: red;
+  cursor: pointer;
 }
 
 @keyframes gradient_anim {

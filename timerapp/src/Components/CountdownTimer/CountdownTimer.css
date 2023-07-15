@@ -1,3 +1,9 @@
+.wrapper {
+    /**display: flex;**/
+    justify-content: center;
+    align-items: center;
+}
+
 .countdown-timer {
     width: 400px;
     height: 400px;
@@ -12,31 +18,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
     /**flex-wrap: wrap;**/
 }
 
 .buttons {
     display: flex;
-}
-
-.resetbutton {
-    width: 100px;
-    height: 100px;
-    color: white;
-    border: 3px solid white;
-    border-radius: 50%;
-    background: transparent;
-
-    display: flex;
-    justify-content: center;
     align-items: center;
-
-    font-size: 24px;
-    font-family: "DM Sans";
-
-    margin-top: 12%;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
+    margin-top: 4vh;
+    margin-bottom: auto;
 }
 
 .playbutton {
@@ -53,19 +46,35 @@
 
     font-size: 24px;
     font-family: "DM Sans";
-
-    margin-top: 12%;
+    margin-right: 3%;
     margin-left: auto;
+}
+
+.resetbutton {
+    width: 100px;
+    height: 100px;
+    color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+    font-family: "DM Sans";
+    margin-left: 3%;
     margin-right: auto;
 }
 
 .playbutton:hover {
-    background: grey;
+    border-color: red;
     cursor: pointer;
 }
 
 .resetbutton:hover {
-    background: grey;
+    border-color: red;
     cursor: pointer;
 }
 
