@@ -9,7 +9,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from datetime import timedelta, date
 from textblob import TextBlob
-
+from flask import request
+import flask
 
 #nltk.download('all')
 analyzer = SentimentIntensityAnalyzer()
@@ -48,13 +49,13 @@ def get_sentiment(text):
 def days_ago(n):
   return date.today() - timedelta(n)
  
-def News():
+def News(search="everything"):
      
     # Init
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
 
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything( q='Business',
+    top_headlines = newsapi.get_everything( q=search,
                                             language='en',
                                             sort_by='relevancy',
                                             from_param=str(days_ago(30)))["articles"][:75]
@@ -88,11 +89,22 @@ def News():
 
 
 app = Flask(__name__)
-
+@app.after_request
+def set_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    return response
+topic = 'everything'
 #Members Api route
 @app.route("/sentiment")
-def members():
-    return News()
+def articles():
+    return News("swimming")
+
+@app.route("/change_topic")
+def topicChange():
+    print(request.get_json()['title'])
+    return News(request.get_json()['title'])
 
 if __name__ == "__main__":
     app.run(debug=True)

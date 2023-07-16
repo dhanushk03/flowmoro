@@ -3,21 +3,26 @@ import NewsItem from "./components/NewsItem"
 import './App.css';
 
 function App(){
-
   const[data, setData] = useState([])
+  const[question, setQuestion] = useState([])
 
+  
   useEffect(() => {
-    fetch("/sentiment").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data.articles)
-        console.log(data)
-      }
-    )
+      fetch("/sentiment").then(
+        res => res.json()
+      ).then(
+        data => {
+          setData(data.articles)
+  
+          
+        }
+      )
+    
+    
+
   }, [])
 
-  console.log(data);
+
 
   var mapped = data.map(article => <NewsItem 
     author={article.author}
