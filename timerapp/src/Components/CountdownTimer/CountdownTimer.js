@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import "./CountdownTimer.css";
 
 const defaultRemainingTimeWork = {
-    seconds: '20',
-    minutes: '00',
+    seconds: '00',
+    minutes: '25',
     hours: '00',
 }
 
 const defaultRemainingTimeBreak = {
-    seconds: '10',
-    minutes: '00',
+    seconds: '00',
+    minutes: '05',
     hours: '00',
 }
 

@@ -1,9 +1,9 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(90deg, rgb(134, 71, 180), #da61ff);
+  background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green);
   background-size: 400% 400%;
-  animation: gradient_anim 23s ease infinite;
+  animation: gradient_anim 60s ease infinite;
 }
 
 .navbar {
