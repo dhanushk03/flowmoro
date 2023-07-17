@@ -1,13 +1,7 @@
-.flap {
+.App {
   width: 100vw;
   height: 100vh;
-  /**margin: 0;**/
-  /**padding: 0;**/
-  /**display: flex;**/
-  /**align-items: center;**/
-  /**justify-content: center;**/
-  /**background: linear-gradient(darkmagenta, lightblue);**/
-  background: linear-gradient(90deg, #0062ff, #da61ff);
+  background: linear-gradient(90deg, rgb(134, 71, 180), #da61ff);
   background-size: 400% 400%;
   animation: gradient_anim 23s ease infinite;
 }
@@ -16,10 +10,10 @@
   background-color: #333;
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: stretch;
   gap: 2rem;
-  padding: 30px 25px;
+  padding: 10px 25px;
 }
 
 .navbar ul {
@@ -27,6 +21,7 @@
   margin: 0;
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -37,6 +32,10 @@
   display: flex;
   align-items: center;
   padding: .25rem;
+}
+
+[class="navbar-right"] {
+  text-align: right;
 }
 
 .navbar li:hover {

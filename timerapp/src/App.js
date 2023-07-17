@@ -5,7 +5,7 @@ import Navbar from "./Components/Navbar.js"
 
 function App() {
   return (
-    <div className="flap">
+    <div className="App">
       <Navbar />
       <CountdownTimer />
     </div>

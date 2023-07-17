@@ -5,10 +5,11 @@ const Navbar = (props) => {
         <div className="navbar">
             <nav>
                 <ul>
-                    <li>Flowmodoro</li>
-                    <li>Timer</li>
-                    <li>To-do List</li>
-                    <li>News</li>
+                    <li className="flmdlogo"><img src="./flowmodoro_logo.jpg" width="30px" height="30px"/></li>
+                    <li className="homepage">Flowmodoro</li>
+                    <li className="navbar-right">Timer</li>
+                    <li className="navbar-right">To-do List</li>
+                    <li className="navbar-right">News</li>
                 </ul>
             </nav>
         </div>
