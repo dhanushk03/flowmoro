@@ -57,8 +57,8 @@ def News(search="everything"):
     # /v2/top-headlines
     top_headlines = newsapi.get_everything( q=search,
                                             language='en',
-                                            sort_by='relevancy',
-                                            from_param=str(days_ago(30)))["articles"][:75]
+                                            sort_by='publishedAt',
+                                            from_param=str(days_ago(29)))["articles"][:75]
     #print(top_headlines)
     list1 = []
     list2 = []
@@ -99,12 +99,13 @@ topic = 'everything'
 #Members Api route
 @app.route("/sentiment")
 def articles():
-    return News("swimming")
+    return News("baseball")
 
-@app.route("/change_topic")
+@app.route("/change_topic", methods = ["GET", "POST"])
 def topicChange():
-    print(request.get_json()['title'])
-    return News(request.get_json()['title'])
+    print(News(request.get_json()["question"]))
+    if(request.method == 'POST'):
+        return News(request.get_json()["question"])
 
 if __name__ == "__main__":
     app.run(debug=True)

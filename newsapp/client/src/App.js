@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import NewsItem from "./components/NewsItem"
 import './App.css';
+import { TopicForm } from "./components/TopicForm";
+import { Container } from "semantic-ui-react";
 
 function App(){
   const[data, setData] = useState([])
-  const[question, setQuestion] = useState([])
+  //const[question, setQuestion] = useState([])
 
   
   useEffect(() => {
@@ -12,9 +14,9 @@ function App(){
         res => res.json()
       ).then(
         data => {
+          console.log(data.articles)
           setData(data.articles)
   
-          
         }
       )
     
@@ -38,6 +40,11 @@ function App(){
 
   return (
     <main>
+      <TopicForm
+        onNewTopic={news =>
+          setData(news.articles)
+        }
+      />
       <div className = "cards-container container flex">
          {mapped}
       </div>
