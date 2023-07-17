@@ -5,7 +5,7 @@ import "./CountdownTimer.css";
 const defaultRemainingTimeWork = {
     seconds: '00',
     minutes: '25',
-    hours: '00',
+    hours: '02',
 }
 
 const defaultRemainingTimeBreak = {
@@ -32,6 +32,7 @@ const CountdownTimer = (props) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
+            //document.title = `Flowmodoro ${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds}`;
             if (!paused) {
                 updateRemainingTime();
             }
