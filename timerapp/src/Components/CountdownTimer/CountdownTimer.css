@@ -14,13 +14,12 @@
     margin-right: auto;
 }
 
-.countdown-timer {
+/* .countdown-timer {
     width: 400px;
     height: 400px;
     border: 6px solid white;
     border-radius: 50%;
     box-shadow: black;
-    /**background: linear-gradient(darkmagenta, lightblue);**/
 
     font-family: "DM Sans";
     font-size: 72px;
@@ -32,7 +31,52 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    /**flex-wrap: wrap;**/
+}
+*/
+
+.countdown-timer {
+    width: 400px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: black;
+    font-family: "DM Sans";
+    font-size: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    --x: 0;
+    --deg: calc(calc(var(--x)) * 360deg);
+    background: conic-gradient(white 0deg, white var(--deg), var(--deg), red 360deg);
+}
+
+.inner-circle {
+    width: 375px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green);
+    background-size: 400% 400%;
+    animation: gradient_anim 60s ease infinite;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown-timer::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background-color: var(--bg);
+}
+  
+.countdown-timer span {
+    position: relative;
+    z-index: 1;
 }
 
 .buttons {
@@ -111,4 +155,16 @@ span {
     margin-left: 3px;
     margin-right: 3px;
     color: white;
+}
+
+@keyframes gradient_anim {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

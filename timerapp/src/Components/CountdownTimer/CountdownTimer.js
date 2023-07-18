@@ -4,8 +4,8 @@ import "./CountdownTimer.css";
 
 const defaultRemainingTimeWork = {
     seconds: '00',
-    minutes: '25',
-    hours: '02',
+    minutes: '01',
+    hours: '00',
 }
 
 const defaultRemainingTimeBreak = {
@@ -17,6 +17,8 @@ const defaultRemainingTimeBreak = {
 const defaultWorkSessionNumber = 1;
 const defaultBreakSessionNumber = 1;
 const defaultIsWork = true;
+const defaultTotalTimeInSecondsWork = 1 * 60;
+const defaultTotalTimeInSecondsRest = 5 * 60;
 
 const CountdownTimer = (props) => {
     /**
@@ -29,6 +31,7 @@ const CountdownTimer = (props) => {
     const [workSession, setWorkSession] = useState(defaultWorkSessionNumber);
     const [breakSession, setBreakSession] = useState(defaultBreakSessionNumber);
     const [isWork, setIsWork] = useState(defaultIsWork);
+    const [remainingTimeInSeconds, setRemainingTimeInSeconds] = useState(defaultTotalTimeInSecondsWork);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -47,11 +50,13 @@ const CountdownTimer = (props) => {
             setRemainingTime(defaultRemainingTimeBreak);
             setIsWork((prevIsWork) => !prevIsWork);
             setWorkSession((prevWorkSession) => prevWorkSession + 1);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
             return;
         } else if (remainingTime.seconds === "00" && remainingTime.minutes === "00" && remainingTime.hours === "00" && !isWork) {
             setRemainingTime(defaultRemainingTimeWork);
             setIsWork((prevIsWork) => !prevIsWork);
             setBreakSession((prevWorkSession) => prevWorkSession + 1);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
             return;
         }
 
@@ -82,6 +87,8 @@ const CountdownTimer = (props) => {
                 hours: nhours
             }
         });
+
+        setRemainingTimeInSeconds(prevTime => prevTime - 1);
         
         function padZeroes(num) {
             return String(num).length === 2 ? String(num) : "0" + String(num);
@@ -91,23 +98,29 @@ const CountdownTimer = (props) => {
     function resetTime() {
         if (isWork) {
             setRemainingTime(defaultRemainingTimeWork);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         } else {
             setRemainingTime(defaultRemainingTimeBreak);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
         }
         setPaused(true);
     }
+
+    var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
 
     return (
         <div className="wrapper">
             <div className="session-counter">
                 {isWork? <h2>Work {workSession}</h2> : <h2>Break {breakSession}</h2>}
             </div>
-            <div className="countdown-timer">
-                <span>{remainingTime.hours}</span>
-                <span>:</span>
-                <span>{remainingTime.minutes}</span>
-                <span>:</span>
-                <span>{remainingTime.seconds}</span>
+            <div className="countdown-timer" style={{"--x": x}}>
+                <div className="inner-circle">
+                    <span>{remainingTime.hours}</span>
+                    <span>:</span>
+                    <span>{remainingTime.minutes}</span>
+                    <span>:</span>
+                    <span>{remainingTime.seconds}</span>
+                </div>
             </div>
             <div className="buttons">
                 <button onClick={() => setPaused(!paused)} className="playbutton">
