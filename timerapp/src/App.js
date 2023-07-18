@@ -1,5 +1,6 @@
 import './App.css';
 import React from "react";
+import { useState } from "react";
 import CountdownTimer from "./Components/CountdownTimer/CountdownTimer.js";
 import TodoListItem from "./Components/TodoList/TodoListItem.js";
 import Navbar from "./Components/Navbar.js"
@@ -8,6 +9,7 @@ function App() {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(0);
+  const [currIdNum, setCurrIdNum] = useState(0);
   const [todoList, setTodoList] = useState([]);
   const [completedList, setCompletedList] = useState([]);
 
@@ -22,34 +24,29 @@ function App() {
   };
 
   const addTask = () => {
-    const newTask = { title: {taskTitle}, description: {taskDescription}, deadline: {taskDeadline} };
+    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: currIdNum };
     setTodoList([...todoList, newTask]);
     setTaskTitle("");
     setTaskDescription("");
-    setDeadline(0);
+    setTaskDeadline(0);
+    setCurrIdNum((prevIdNum) => prevIdNum + 1)
   };
 
   const completeTask = (id) => {
     var completedTask = null;
-    for(task in todoList){
-      if (task.id == id) {
-        completedTask = task;
-        break
+    todoList.forEach(item => {
+      if (item.id == id) {
+        completedTask = item;
       }
-    }
+    });
     setCompletedList([...completedList, completedTask]);
-    setTodoList(
-      todoList.filter((id) => {
-        return task.id != id;
-      })
-    );
-
+    deleteTask(id);
   };
 
   const deleteTask = (id) => {
     setTodoList(
-      todoList.filter((id) => {
-        return task.id != id;
+      todoList.filter((item) => {
+        return item.id != id;
       })
     );
   };
@@ -57,17 +54,45 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="todoList">
+      {/*<CountdownTimer />*/}
+      {
+      <div id="todoList">
+        <div id="form">
+          <input
+              type="text"
+              placeholder="Title"
+              name="taskTitle"
+              value={taskTitle}
+              onChange={handleChange}
+          />
+          <input
+              type="text"
+              placeholder="Description"
+              name="taskDescription"
+              value={taskDescription}
+              onChange={handleChange}
+          />
+          <input
+              type="number"
+              placeholder="Deadline (in Days)"
+              name="taskDeadline"
+              value={taskDeadline}
+              onChange={handleChange}
+          />
+          <button onClick={addTask}>Add Task</button>
+        </div>
         {todoList.map((item) => {
           return <TodoListItem 
             title={item.title} 
             description={item.description} 
             deadline={item.deadline} 
+            id={item.id}
             completeTask={completeTask} 
             deleteTask={deleteTask}
           />;
         })}
       </div>
+      }
     </div>
   );
 }

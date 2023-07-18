@@ -1,6 +1,6 @@
 .App {
-  width: 100vw;
-  height: 100vh;
+  width: max(100vw, 100%);
+  height: max(100vw, 100vh);
   background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green);
   background-size: 400% 400%;
   animation: gradient_anim 60s ease infinite;
@@ -42,6 +42,12 @@
   background-color: white;
   color: #333;
   cursor: pointer;
+}
+
+#form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 530px;
 }
 
 @keyframes gradient_anim {
