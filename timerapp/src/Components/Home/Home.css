@@ -1,0 +1,9 @@
+.home {
+    display: flex;
+}
+
+.title {
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}

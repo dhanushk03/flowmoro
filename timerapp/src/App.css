@@ -12,22 +12,13 @@
   background-color: transparent;
   color: white;
   display: flex;
-  justify-content: left;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
   padding: 10px 25px;
 }
 
-.navbar ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.navbar li {
+.navbar li, .navbar .navbar-item {
   color: inherit;
   text-decoration: none;
   height: 100%;
@@ -36,11 +27,7 @@
   padding: .25rem;
 }
 
-[class="navbar-right"] {
-  text-align: right;
-}
-
-.navbar li:hover {
+.navbar .navbar-item:hover {
   background-color: white;
   color: #333;
   cursor: pointer;
