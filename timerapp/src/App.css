@@ -46,10 +46,42 @@
   cursor: pointer;
 }
 
-#form {
+#todoList {
   margin-left: auto;
   margin-right: auto;
-  width: 530px;
+  width: 600px;
+}
+
+#addTaskForm {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  align-items: stretch;
+  justify-content: center;
+  height: 30px;
+}
+
+#taskList {
+  margin-top: 25px;
+}
+
+#addTaskForm input {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: block;
+  border-radius: 4px;
+  border: none;
+}
+
+#addTaskButton {
+  margin-left: 10px;
+  border-radius: 4px;
+  border: none
+}
+
+.taskdivider {
+  width: 70%;
 }
 
 @keyframes gradient_anim {

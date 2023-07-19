@@ -2,16 +2,18 @@
     display: flexbox;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .content {
-    background: white;
-    color: black;
+    background: transparent/**rgb(212, 138, 150)**/;
+    color: white;
     width: 400px;
-    max-height: 120px;
+    max-height: 84px;
+    font-family: "San Francisco";
     overflow-y: auto;
     border-radius: 10px;
     justify-content: center;
@@ -42,7 +44,9 @@
 #completeButton {
     display: block;
     background: transparent;
+    color: white;
     border-radius: 4px;
+    border: none;
 }
 
 #deleteButton {
@@ -50,13 +54,15 @@
     width: 73px;
     margin-top: 3px;
     background: transparent;
+    color: white;
     border-radius: 4px;
+    border: none;
 }
 
 #completeButton:hover, #deleteButton:hover {
     cursor: pointer;
     color: white;
-    background-color: black;
+    background-color: lightblue;
 }
 
 #tasktitle {
@@ -64,7 +70,17 @@
     margin-left: 5px;
 }
 
+#taskdateadded {
+    margin-left: 5px;
+}
+
 #taskdescription {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+@font-face {
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
 }

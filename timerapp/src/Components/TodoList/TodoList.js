@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import TodoListItem from "./TodoListItem.js";
+import "../../App.css"
 
 const TodoList = () => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -21,8 +22,8 @@ const TodoList = () => {
   };
 
   const addTask = () => {
-    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: currIdNum };
-    setTodoList([...todoList, newTask]);
+    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: currIdNum, dateAdded: new Date().toLocaleDateString() };
+    setTodoList([newTask, ...todoList]);
     setTaskTitle("");
     setTaskDescription("");
     setTaskDeadline(0);
@@ -36,7 +37,7 @@ const TodoList = () => {
         completedTask = item;
       }
     });
-    setCompletedList([...completedList, completedTask]);
+    setCompletedList([completedTask, ...completedList]);
     deleteTask(id);
   };
 
@@ -50,40 +51,50 @@ const TodoList = () => {
 
   return (
     <div id="todoList">
-        <div id="form">
-        <input
-            type="text"
-            placeholder="Title"
-            name="taskTitle"
-            value={taskTitle}
-            onChange={handleChange}
-        />
-        <input
-            type="text"
-            placeholder="Description"
-            name="taskDescription"
-            value={taskDescription}
-            onChange={handleChange}
-        />
-        <input
-            type="number"
-            placeholder="Deadline (in Days)"
-            name="taskDeadline"
-            value={taskDeadline}
-            onChange={handleChange}
-        />
-        <button onClick={addTask}>Add Task</button>
+        <div id="addTaskForm">
+            <input
+                type="text"
+                placeholder="Title"
+                name="taskTitle"
+                value={taskTitle}
+                onChange={handleChange}
+            />
+            <input
+                type="text"
+                placeholder="Description"
+                name="taskDescription"
+                value={taskDescription}
+                onChange={handleChange}
+            />
+            <input
+                type="Number"
+                placeholder="Deadline"
+                name="taskDeadline"
+                value={taskDeadline}
+                onChange={handleChange}
+            />
+            <button onClick={addTask} id="addTaskButton">Add Task</button>
         </div>
-        {todoList.map((item) => {
-        return <TodoListItem 
-            title={item.title} 
-            description={item.description} 
-            deadline={item.deadline} 
-            id={item.id}
-            completeTask={completeTask} 
-            deleteTask={deleteTask}
-        />;
-        })}
+        <div id="taskList">
+            {todoList.map((item) => {
+
+              return (
+                <div>
+                  <hr className="taskdivider"></hr>
+                  <TodoListItem 
+                    title={item.title} 
+                    description={item.description} 
+                    deadline={item.deadline} 
+                    id={item.id}
+                    dateAdded={item.dateAdded}
+                    completeTask={completeTask} 
+                    deleteTask={deleteTask}
+                  />
+                </div>
+              );
+            })}
+            <hr className="taskdivider"></hr>
+        </div>
     </div>
   );
 }

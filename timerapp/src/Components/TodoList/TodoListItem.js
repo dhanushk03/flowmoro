@@ -26,6 +26,7 @@ const TodoListItem = (props) => {
             </div>
           </div>
           <h2 id="tasktitle">{props.title}</h2>
+          <p id="taskdateadded">{props.dateAdded}</p>
           <p id="taskdescription">{props.description}</p>
         </div>
       </div>

@@ -40,7 +40,9 @@
     border-radius: 50%;
     box-shadow: black;
     font-family: "DM Sans";
-    font-size: 68px;
+    --f: 68;
+    --f-size: calc(calc(var(--f)) * 1px);
+    font-size: var(--f-size);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,8 +51,8 @@
     margin-right: auto;
     position: relative;
     --x: 0;
-    --deg: calc(calc(var(--x)) * 360deg);
-    background: conic-gradient(white 0deg, white var(--deg), var(--deg), lightblue 360deg);
+    --deg: calc(calc(1 - var(--x)) * 360deg);
+    background: conic-gradient(lightblue 0deg, lightblue var(--deg), var(--deg), white 360deg);
 }
 
 .inner-circle {
@@ -125,12 +127,12 @@
 }
 
 .playbutton:hover {
-    border-color: red;
+    border-color: lightblue;
     cursor: pointer;
 }
 
 .resetbutton:hover {
-    border-color: red;
+    border-color: lightblue;
     cursor: pointer;
 }
 

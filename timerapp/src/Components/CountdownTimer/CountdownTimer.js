@@ -4,7 +4,7 @@ import "./CountdownTimer.css";
 
 const defaultRemainingTimeWork = {
     seconds: '00',
-    minutes: '01',
+    minutes: '25',
     hours: '00',
 }
 
@@ -17,7 +17,7 @@ const defaultRemainingTimeBreak = {
 const defaultWorkSessionNumber = 1;
 const defaultBreakSessionNumber = 1;
 const defaultIsWork = true;
-const defaultTotalTimeInSecondsWork = 1 * 60;
+const defaultTotalTimeInSecondsWork = 25 * 60 + 20;
 const defaultTotalTimeInSecondsRest = 5 * 60;
 
 const CountdownTimer = (props) => {
@@ -107,16 +107,17 @@ const CountdownTimer = (props) => {
     }
 
     var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
+    var f = remainingTime.hours == "00" ? 90 : 68;
 
     return (
         <div className="wrapper">
             <div className="session-counter">
                 {isWork? <h2>Work {workSession}</h2> : <h2>Break {breakSession}</h2>}
             </div>
-            <div className="countdown-timer" style={{"--x": x}}>
+            <div className="countdown-timer" style={{"--x": x, "--f": f}}>
                 <div className="inner-circle">
-                    <span>{remainingTime.hours}</span>
-                    <span>:</span>
+                    {remainingTime.hours != "00" && <span>{remainingTime.hours}</span>}
+                    {remainingTime.hours != "00" && <span>:</span>}
                     <span>{remainingTime.minutes}</span>
                     <span>:</span>
                     <span>{remainingTime.seconds}</span>
