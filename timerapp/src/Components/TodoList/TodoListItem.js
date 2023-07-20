@@ -2,11 +2,20 @@ import React from "react";
 import "./TodoListItem.css";
 
 const TodoListItem = (props) => {
+    var dayDisplay = 0;
+    if (props.deadline == 0) {
+      dayDisplay = "Today";
+    } else if (props.deadline == 1) {
+      dayDisplay = "Tomm";
+    } else {
+      dayDisplay = props.deadline + " days";
+    }
+
     return (
       <div className="task">
         <div className="content">
           <div id="metadata">
-            <h3 id="taskdeadline">{props.deadline} days</h3>
+            <h3 id="taskdeadline">{dayDisplay}</h3>
             <div id="buttons">
               <button id="completeButton"
               onClick={() => {

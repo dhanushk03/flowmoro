@@ -1,9 +1,9 @@
 .App {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green);
+  background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll;
   background-size: 400% 400%;
   animation: gradient_anim 60s ease infinite;
 }
@@ -16,6 +16,10 @@
   align-items: center;
   gap: 2rem;
   padding: 10px 25px;
+}
+
+.flmdlogo {
+  border-radius: 50%;
 }
 
 .navbar li, .navbar .navbar-item {
