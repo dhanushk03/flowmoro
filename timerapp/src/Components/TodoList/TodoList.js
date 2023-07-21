@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoListItem from "./TodoListItem.js";
 import "../../App.css"
 
@@ -8,8 +8,15 @@ const TodoList = () => {
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(0);
   const [currIdNum, setCurrIdNum] = useState(0);
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(() => {
+    const localData = localStorage.getItem('todoList');
+    return localData ? JSON.parse(localData) : [];
+  });
   const [completedList, setCompletedList] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }, [todoList]);
 
   const handleChange = (event) => {
     if (event.target.name === "taskTitle") {
@@ -73,7 +80,7 @@ const TodoList = () => {
                 value={taskDeadline}
                 onChange={handleChange}
             />
-            <button onClick={addTask} id="addTaskButton">Add Task</button>
+            <button onClick={addTask} id="addTaskButton">Add To-do</button>
         </div>
         <div id="taskList">
             {todoList.map((item) => {
@@ -94,6 +101,7 @@ const TodoList = () => {
               );
             })}
             <hr className="taskdivider"></hr>
+            {todoList.length == 0 && <h1 id="emptymessage">No items pending</h1>}
         </div>
     </div>
   );

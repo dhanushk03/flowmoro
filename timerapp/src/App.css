@@ -3,16 +3,17 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll;
+  /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll; */
+  background: linear-gradient(45deg, #da61ff, green) scroll;
   background-size: 400% 400%;
-  animation: gradient_anim 60s ease infinite;
+  /* animation: gradient_anim 60s ease infinite; */
 }
 
 .navbar {
   background-color: transparent;
   color: white;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 2rem;
   padding: 10px 25px;
@@ -29,18 +30,38 @@
   display: flex;
   align-items: center;
   padding: .25rem;
+  margin-left: 20px;
+  font-family: "San Francisco";
+  font-size: 18px;
+  overflow-x: scroll;
+}
+
+.navbar-left {
+  display: flex;
+  margin-left: 30px;
+  margin-right: auto;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  margin-left: auto;
+  margin-right: 30px;
+  align-items: center;
 }
 
 .navbar .navbar-item:hover {
-  background-color: white;
-  color: #333;
+  /* background-color: white; */
+  color: lightblue;
   cursor: pointer;
+  border-bottom: 2px solid lightblue;
 }
 
 #todoList {
   margin-left: auto;
   margin-right: auto;
   width: 600px;
+  background: transparent;
 }
 
 #addTaskForm {
@@ -68,11 +89,25 @@
 #addTaskButton {
   margin-left: 10px;
   border-radius: 4px;
-  border: none
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+#addTaskButton:hover {
+  cursor: pointer;
+  border-color: lightblue;
 }
 
 .taskdivider {
-  width: 70%;
+  width: 85%;
+}
+
+#emptymessage {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
 }
 
 @keyframes gradient_anim {
@@ -85,4 +120,10 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
 }

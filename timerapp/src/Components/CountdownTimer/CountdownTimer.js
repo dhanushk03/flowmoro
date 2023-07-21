@@ -26,12 +26,28 @@ const CountdownTimer = (props) => {
      * As the timer ticks down, want to change the percentage of the arc colored white proportional to the amount of time remaining.
      * I want to provide an input form for the user to set their preferred time studying.
      */
-    const [remainingTime, setRemainingTime] = useState(defaultRemainingTimeWork);
+    const [remainingTime, setRemainingTime] = useState(() => {
+        const time = JSON.parse(localStorage.getItem('remainingTime'));
+        return time ? time : defaultRemainingTimeWork;
+    });
     const [paused, setPaused] = useState(true);
-    const [workSession, setWorkSession] = useState(defaultWorkSessionNumber);
-    const [breakSession, setBreakSession] = useState(defaultBreakSessionNumber);
-    const [isWork, setIsWork] = useState(defaultIsWork);
-    const [remainingTimeInSeconds, setRemainingTimeInSeconds] = useState(defaultTotalTimeInSecondsWork);
+    const [workSession, setWorkSession] = useState(() => {
+        const number = Number(localStorage.getItem('workSession'));
+        return number ? number : defaultWorkSessionNumber;
+    });
+    const [breakSession, setBreakSession] = useState(() => {
+        const number = Number(localStorage.getItem('breakSession'));
+        return number ? number : defaultBreakSessionNumber;
+    });
+    const [isWork, setIsWork] = useState(() => {
+        const bool = localStorage.getItem('isWork');
+        return bool == 'false' ? false : true;
+    });
+    const [remainingTimeInSeconds, setRemainingTimeInSeconds] = useState(() => {
+        const time = Number(localStorage.getItem('remainingTimeInSeconds'));
+        const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
+        return time ? time : original;
+    });
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -39,6 +55,11 @@ const CountdownTimer = (props) => {
             if (!paused) {
                 updateRemainingTime();
             }
+            localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
+            localStorage.setItem('remainingTimeInSeconds', String(remainingTimeInSeconds));
+            localStorage.setItem('isWork', String(isWork));
+            localStorage.setItem('workSession', String(workSession));
+            localStorage.setItem('breakSession', String(breakSession));
         }, 1000);
         return () => clearTimeout(intervalId);
     }, [remainingTime, paused]);
