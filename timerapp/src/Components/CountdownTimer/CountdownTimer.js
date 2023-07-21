@@ -30,7 +30,10 @@ const CountdownTimer = (props) => {
         const time = JSON.parse(localStorage.getItem('remainingTime'));
         return time ? time : defaultRemainingTimeWork;
     });
-    const [paused, setPaused] = useState(true);
+    const [paused, setPaused] = useState(() => {
+        const bool = localStorage.getItem('paused');
+        return bool == 'false' ? false : true;
+    });
     const [workSession, setWorkSession] = useState(() => {
         const number = Number(localStorage.getItem('workSession'));
         return number ? number : defaultWorkSessionNumber;
@@ -56,6 +59,7 @@ const CountdownTimer = (props) => {
                 updateRemainingTime();
             }
             localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
+            localStorage.setItem('paused', String(paused));
             localStorage.setItem('remainingTimeInSeconds', String(remainingTimeInSeconds));
             localStorage.setItem('isWork', String(isWork));
             localStorage.setItem('workSession', String(workSession));

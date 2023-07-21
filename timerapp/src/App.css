@@ -4,7 +4,8 @@
   margin: 0;
   padding: 0;
   /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll; */
-  background: linear-gradient(45deg, #da61ff, green) scroll;
+  /* background: linear-gradient(45deg, #da61ff, green) scroll; */
+  background: linear-gradient(45deg, pink, blue);
   background-size: 400% 400%;
   /* animation: gradient_anim 60s ease infinite; */
 }
@@ -61,7 +62,6 @@
   margin-left: auto;
   margin-right: auto;
   width: 600px;
-  background: transparent;
 }
 
 #addTaskForm {
@@ -69,9 +69,10 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
-  align-items: stretch;
+  margin-bottom: 25px;
+  align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 60px;
 }
 
 #taskList {
@@ -82,25 +83,64 @@
   margin-left: 10px;
   margin-right: 10px;
   display: block;
-  border-radius: 4px;
+  /* border-radius: 4px; */
+  outline: none;
+}
+
+#taskTitle, #taskDescription, #taskDeadline {
+  background: transparent;
   border: none;
+  margin-bottom: 10px;
+  font-size: medium;
+  color: white;
+}
+
+.form-left {
+  margin-right: 25px;
+}
+
+#taskTitle, #taskDescription {
+  border-bottom: 1px solid white;
+  width: 250px;
+}
+
+#taskDeadline {
+  width: 75px;
+  text-align: center;
 }
 
 #addTaskButton {
+  --r: 50;
+  --a: 1;
+  --radius-percent: calc(calc(var(--r)) * 1%);
+  font-size: medium;
   margin-left: 10px;
-  border-radius: 4px;
   background: transparent;
   color: white;
-  border: 2px solid white;
+  border: none;
+  border-radius: var(--radius-percent);
+  aspect-ratio: var(--a);
 }
 
 #addTaskButton:hover {
   cursor: pointer;
-  border-color: lightblue;
+  border: none;
+  background-color: lightblue;
+  border-bottom: 2px solid white;
+  transition: 0.2s;
 }
 
 .taskdivider {
   width: 85%;
+}
+
+::placeholder {
+  color: white;
+}
+
+#bottom-spacer {
+  height: 25px;
+  width: 100%
 }
 
 #emptymessage {

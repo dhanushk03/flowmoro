@@ -60,7 +60,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green); */
-    background: linear-gradient(45deg, #da61ff, green);
+    background: linear-gradient(45deg, pink, blue);
     background-size: 400% 400%;
     /* animation: gradient_anim 60s ease infinite; */
     display: flex;
@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 4vh;
+    margin-top: 30px;
     margin-bottom: auto;
 }
 
@@ -127,14 +127,11 @@
     margin-right: auto;
 }
 
-.playbutton:hover {
-    border-color: lightblue;
+.playbutton:hover, .resetbutton:hover {
+    border: none;
+    background-color: lightblue;
     cursor: pointer;
-}
-
-.resetbutton:hover {
-    border-color: lightblue;
-    cursor: pointer;
+    transition: 0.2s;
 }
 
 #startBtn {

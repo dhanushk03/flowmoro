@@ -34,7 +34,7 @@ const TodoListItem = (props) => {
               </button>
             </div>
           </div>
-          <h2 id="tasktitle">{props.title}</h2>
+          <h3 id="tasktitle">{props.title}</h3>
           <p id="taskdateadded">{props.dateAdded}</p>
           <p id="taskdescription">{props.description}</p>
         </div>
