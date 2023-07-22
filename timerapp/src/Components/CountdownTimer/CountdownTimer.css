@@ -60,7 +60,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green); */
-    background: linear-gradient(45deg, pink, blue);
+    background: linear-gradient(45deg, blue, plum);
     background-size: 400% 400%;
     /* animation: gradient_anim 60s ease infinite; */
     display: flex;

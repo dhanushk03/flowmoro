@@ -1,7 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import "./TodoListItem.css";
 
 const TodoListItem = (props) => {
+    const [expanded, setExpanded] = useState(false);
     var dayDisplay = 0;
     if (props.deadline == 0) {
       dayDisplay = "Today";
@@ -11,9 +13,15 @@ const TodoListItem = (props) => {
       dayDisplay = props.deadline + " days";
     }
 
+    const defaultHeight = 78;
+    const expandedHeight = 200;
+    var height = expanded ? expandedHeight : defaultHeight;
+    console.log(`${props.id} ${expanded} ${height}`);
+
+
     return (
       <div className="task">
-        <div className="content">
+        <div className="content" style={{"--height": height}} onClick={() => setExpanded(!expanded)}>
           <div id="metadata">
             <h3 id="taskdeadline">{dayDisplay}</h3>
             <div id="buttons">
