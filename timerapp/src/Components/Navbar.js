@@ -5,7 +5,7 @@ const Navbar = (props) => {
     return (
         <div className="navbar">
             <div className="navbar-left">
-                <li className="flmdlogo"><img src="./flowmodoro_logo.jpg" width="30px" height="30px"/></li>
+                <li className="flmdlogo"><img src="./flowmodoro_logo.jpg" alt="logo" width="30px" height="30px"/></li>
                 <Link to="/" className="navbar-item" id="homepage"> Flowmodoro </Link>
             </div>
             <div className="navbar-right">
