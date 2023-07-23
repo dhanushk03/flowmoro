@@ -55,7 +55,9 @@
   /* background-color: white; */
   color: lightblue;
   cursor: pointer;
-  border-bottom: 2px solid lightblue;
+  border-bottom: 1px solid lightblue;
+  opacity: 0.7;
+  transition: 0.2s;
 }
 
 #todoList {
@@ -72,7 +74,7 @@
   margin-bottom: 25px;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: min-content;
 }
 
 #taskList {
@@ -82,7 +84,7 @@
   padding: 10px;
 }
 
-#addTaskForm input {
+#addTaskForm input, #addTaskForm textarea {
   margin-left: 10px;
   margin-right: 10px;
   display: block;
@@ -95,6 +97,7 @@
   border: none;
   margin-bottom: 10px;
   font-size: medium;
+  font-family: "San Francisco";
   color: white;
 }
 
@@ -102,14 +105,25 @@
   margin-right: 25px;
 }
 
+.form-right {
+  margin-top: 0px;
+}
+
 #taskTitle, #taskDescription {
-  border-bottom: 1px solid white;
+  border: 1px solid white;
+  border-radius: 4px;
   width: 250px;
 }
+
+/* #taskDescription {
+  resize: none;
+} */
 
 #taskDeadline {
   width: 37px;
   text-align: left;
+  justify-content: left;
+  border: 1px solid white;
 }
 
 #taskDeadlineDays {
@@ -125,12 +139,13 @@
   --a: 1;
   --radius-percent: calc(calc(var(--r)) * 1%);
   font-size: medium;
-  margin-left: 10px;
+  margin-left: 2px;
   background: transparent;
   color: white;
   border: 1px solid;
   border-radius: var(--radius-percent);
   aspect-ratio: var(--a);
+
 }
 
 #addTaskButton:hover {
@@ -149,10 +164,10 @@
   color: white;
 }
 
-/* #bottom-spacer {
+#bottom-spacer {
   height: 25px;
   width: 100%
-} */
+}
 
 #emptymessage {
   margin-left: auto;

@@ -61,7 +61,7 @@ const TodoList = () => {
     );
   };
 
-  var radius = !showInputForm ? 50 : 0;
+  var radius = !showInputForm ? 50 : 20;
   var aspect = !showInputForm ? 1 : 4;
   var align = !showInputForm ? "center" : "left";
 
@@ -78,7 +78,7 @@ const TodoList = () => {
                   value={taskTitle}
                   onChange={handleChange}
               />
-              <input
+              <textarea
                   type="text"
                   placeholder="Description (optional)"
                   name="taskDescription"

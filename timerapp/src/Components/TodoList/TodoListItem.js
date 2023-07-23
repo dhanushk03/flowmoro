@@ -17,14 +17,12 @@ const TodoListItem = (props) => {
       var desc = document.getElementById(`taskdescription${props.id}`);
       if (desc.style.display == "block") {
         desc.style.display = "none";
+        setExpanded(false);
       } else {
         desc.style.display = "block";
+        setExpanded(true);
       }
     }
-
-    const defaultHeight = 78;
-    const expandedHeight = 200;
-    var height = expanded ? expandedHeight : defaultHeight;
 
 
     return (
@@ -37,7 +35,8 @@ const TodoListItem = (props) => {
                 props.completeTask(props.id);
               }}
               >
-                Complete
+                {/* Complete */}
+                &#10003;
               </button>
 
               <button id="deleteButton"
@@ -45,13 +44,15 @@ const TodoListItem = (props) => {
                 props.deleteTask(props.id);
               }}
               >
-                Delete
+                {/* Delete */}
+                &#128465;
               </button>
             </div>
           </div>
           <h4 id="tasktitle">{props.title}</h4>
-          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomorrow" ? dayDisplay : "in " + dayDisplay}</p>
-          <p class="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
+          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</p>
+          {(props.description != "" && !expanded) && <div className="taskdownarrow">&#8681;</div>}
+          <p className="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
         </div>
       </div>
     );

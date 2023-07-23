@@ -17,7 +17,7 @@ const defaultRemainingTimeBreak = {
 const defaultWorkSessionNumber = 1;
 const defaultBreakSessionNumber = 1;
 const defaultIsWork = true;
-const defaultTotalTimeInSecondsWork = 25 * 60 + 20;
+const defaultTotalTimeInSecondsWork = 25 * 60;
 const defaultTotalTimeInSecondsRest = 5 * 60;
 
 const CountdownTimer = (props) => {
@@ -137,7 +137,7 @@ const CountdownTimer = (props) => {
     return (
         <div className="wrapper">
             <div className="session-counter">
-                {isWork? <h2>Work {workSession}</h2> : <h2>Break {breakSession}</h2>}
+                {isWork? <h2>Focus {workSession}</h2> : <h2>Break {breakSession}</h2>}
             </div>
             <div className="countdown-timer" style={{"--x": x, "--f": f}}>
                 <div className="inner-circle">
