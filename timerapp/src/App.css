@@ -77,6 +77,9 @@
 
 #taskList {
   margin-top: 25px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 #addTaskForm input {
@@ -105,8 +108,16 @@
 }
 
 #taskDeadline {
-  width: 75px;
-  text-align: center;
+  width: 37px;
+  text-align: left;
+}
+
+#taskDeadlineDays {
+  margin-left: -5px;
+}
+
+#taskDeadlineContainer {
+  display: flex;
 }
 
 #addTaskButton {
@@ -117,31 +128,31 @@
   margin-left: 10px;
   background: transparent;
   color: white;
-  border: none;
+  border: 1px solid;
   border-radius: var(--radius-percent);
   aspect-ratio: var(--a);
 }
 
 #addTaskButton:hover {
   cursor: pointer;
-  border: none;
   background-color: lightblue;
-  border-bottom: 2px solid white;
   transition: 0.2s;
 }
 
 .taskdivider {
-  width: 85%;
+  width: 90%;
+  opacity: 0.5;
+  /* border: none; */
 }
 
 ::placeholder {
   color: white;
 }
 
-#bottom-spacer {
+/* #bottom-spacer {
   height: 25px;
   width: 100%
-}
+} */
 
 #emptymessage {
   margin-left: auto;

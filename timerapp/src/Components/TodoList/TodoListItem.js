@@ -13,17 +13,24 @@ const TodoListItem = (props) => {
       dayDisplay = props.deadline + " days";
     }
 
+    function expandAndCollapse() {
+      var desc = document.getElementById(`taskdescription${props.id}`);
+      if (desc.style.display == "block") {
+        desc.style.display = "none";
+      } else {
+        desc.style.display = "block";
+      }
+    }
+
     const defaultHeight = 78;
     const expandedHeight = 200;
     var height = expanded ? expandedHeight : defaultHeight;
-    console.log(`${props.id} ${expanded} ${height}`);
 
 
     return (
       <div className="task">
-        <div className="content" style={{"--height": height}} onClick={() => setExpanded(!expanded)}>
+        <div className="content" onClick={expandAndCollapse}>
           <div id="metadata">
-            <h3 id="taskdeadline">{dayDisplay}</h3>
             <div id="buttons">
               <button id="completeButton"
               onClick={() => {
@@ -42,9 +49,9 @@ const TodoListItem = (props) => {
               </button>
             </div>
           </div>
-          <h3 id="tasktitle">{props.title}</h3>
-          <p id="taskdateadded">{props.dateAdded}</p>
-          <p id="taskdescription">{props.description}</p>
+          <h4 id="tasktitle">{props.title}</h4>
+          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomorrow" ? dayDisplay : "in " + dayDisplay}</p>
+          <p class="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
         </div>
       </div>
     );

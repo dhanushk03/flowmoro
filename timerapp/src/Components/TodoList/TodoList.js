@@ -90,14 +90,17 @@ const TodoList = () => {
             }
             <div className="form-right">
               {showInputForm && 
-              <input
-                  type="Number"
-                  placeholder="Deadline"
-                  name="taskDeadline"
-                  id="taskDeadline"
-                  value={taskDeadline}
-                  onChange={handleChange}
-              />
+                <div id="taskDeadlineContainer">
+                  <input
+                      type="Number"
+                      placeholder="Deadline"
+                      name="taskDeadline"
+                      id="taskDeadline"
+                      value={taskDeadline}
+                      onChange={handleChange}
+                  />
+                  <span id="taskDeadlineDays">days</span>
+                </div>
               }
               <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--a": aspect}}>{showInputForm? "Add To-do" : "New To-do"}</button>
             </div>

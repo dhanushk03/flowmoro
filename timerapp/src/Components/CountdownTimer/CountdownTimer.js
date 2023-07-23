@@ -153,7 +153,7 @@ const CountdownTimer = (props) => {
                     {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                 </button>
                 <button onClick={resetTime} className="resetbutton">
-                    <p>RESET</p>
+                    <p id="reseticon">&#8634;</p>
                 </button>
             </div>
         </div>

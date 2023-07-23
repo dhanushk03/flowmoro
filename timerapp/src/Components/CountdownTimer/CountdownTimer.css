@@ -119,9 +119,11 @@
 
     display: flex;
     justify-content: center;
+    text-align: center;
     align-items: center;
 
-    font-size: 24px;
+    font-size: 104px;
+    font-weight: 200;
     font-family: "DM Sans";
     margin-left: 3%;
     margin-right: auto;
@@ -150,6 +152,10 @@
     border-style: double;
     border-width: 0px 0px 0px 37px;
     border-color: #ffffff;
+}
+
+#reseticon {
+    transform: translateY(-6px);
 }
 
 span {
