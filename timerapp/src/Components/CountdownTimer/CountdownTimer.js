@@ -202,8 +202,8 @@ const CountdownTimer = (props) => {
                                     type="text"
                                     name="inputHours"
                                     id="inputHours"
-                                    minLength={2}
-                                    maxLength={2}
+                                    minLength="2"
+                                    maxLength="2"
                                     className="timeinputform"
                                     value={userTimeInputHours}
                                     onChange={handleChange}
@@ -222,8 +222,8 @@ const CountdownTimer = (props) => {
                                     type="text"
                                     name="inputMinutes"
                                     id="inputMinutes"
-                                    minLength={2}
-                                    maxLength={2}
+                                    minLength="2"
+                                    maxLength="2"
                                     className="timeinputform"
                                     value={userTimeInputMinutes}
                                     onChange={handleChange}
@@ -241,8 +241,8 @@ const CountdownTimer = (props) => {
                                     type="text"
                                     name="inputSeconds"
                                     id="inputSeconds"
-                                    minLength={2}
-                                    maxLength={2}
+                                    minLength="2"
+                                    maxLength="2"
                                     className="timeinputform"
                                     value={userTimeInputSeconds}
                                     onChange={handleChange}
@@ -297,7 +297,7 @@ const CountdownTimer = (props) => {
                     {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                 </button>
                 <button onClick={endSession} className="endsessionbutton">
-                    <p id="endsessiontext">END SESSION</p>
+                    <p id="endsessiontext">&#11036;</p>
                 </button>
             </div>
         </div>
