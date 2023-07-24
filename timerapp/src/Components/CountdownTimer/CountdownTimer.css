@@ -14,26 +14,6 @@
     margin-right: auto;
 }
 
-/* .countdown-timer {
-    width: 400px;
-    height: 400px;
-    border: 6px solid white;
-    border-radius: 50%;
-    box-shadow: black;
-
-    font-family: "DM Sans";
-    font-size: 72px;
-    font-weight: bold;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-*/
-
 .countdown-timer {
     width: 400px;
     aspect-ratio: 1;
@@ -52,7 +32,7 @@
     position: relative;
     --x: 0;
     --deg: calc(calc(1 - var(--x)) * 360deg);
-    background: conic-gradient(lightblue 0deg, lightblue var(--deg), var(--deg), white 360deg);
+    background: conic-gradient(orange 0deg, orange var(--deg), var(--deg), grey 360deg);
 }
 
 .inner-circle {
@@ -89,6 +69,7 @@
     justify-content: center;
     margin-top: 30px;
     margin-bottom: auto;
+    background: transparent;
 }
 
 .playbutton {
@@ -105,8 +86,8 @@
 
     font-size: 24px;
     font-family: "DM Sans";
-    margin-right: 3%;
-    margin-left: auto;
+    /* margin-right: auto;
+    margin-left: 3%; */
 }
 
 .resetbutton {
@@ -125,13 +106,34 @@
     font-size: 104px;
     font-weight: 200;
     font-family: "DM Sans";
-    margin-left: 3%;
-    margin-right: auto;
+    margin-right: 50px;
+    /* margin-left: auto;
+    margin-right: 3%; */
 }
 
-.playbutton:hover, .resetbutton:hover {
+.endsessionbutton {
+    width: 100px;
+    height: 100px;
+    color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    font-size:large;
+    font-weight: 200;
+    font-family: "DM Sans";
+    margin-left: 50px;
+    /* margin-right: auto; */
+}
+
+.playbutton:hover, .resetbutton:hover, .endsessionbutton:hover {
     border: none;
-    background-color: lightblue;
+    background-color: orange;
     cursor: pointer;
     transition: 0.2s;
 }

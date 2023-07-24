@@ -5,7 +5,7 @@
   padding: 0;
   /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll; */
   /* background: linear-gradient(45deg, #da61ff, green) scroll; */
-  background: linear-gradient(45deg, plum, blue);
+  background: linear-gradient(45deg, purple, blue);
   background-size: 400% 400%;
   /* animation: gradient_anim 60s ease infinite; */
 }
@@ -51,11 +51,11 @@
   align-items: center;
 }
 
-.navbar .navbar-item:hover {
+.navbar-item:hover, .navbar-item:active {
   /* background-color: white; */
-  color: lightblue;
+  color: orange;
   cursor: pointer;
-  border-bottom: 1px solid lightblue;
+  border-bottom: 1px solid orange;
   opacity: 0.7;
   transition: 0.2s;
 }
@@ -64,6 +64,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 600px;
+  /* mix-blend-mode:difference; */
 }
 
 #addTaskForm {
@@ -80,6 +81,7 @@
 #taskList {
   margin-top: 25px;
   background: transparent;
+  background-size: 400% 400%;
   border-radius: 10px;
   padding: 10px;
 }
@@ -134,25 +136,54 @@
   display: flex;
 }
 
-#addTaskButton {
+/* #addTaskButton {
   --r: 50;
-  --a: 1;
+  --w: 40;
+  --h: 40;
   --radius-percent: calc(calc(var(--r)) * 1%);
   font-size: medium;
+  background-color: transparent;
   margin-left: 2px;
-  background: transparent;
   color: white;
   border: 1px solid;
   border-radius: var(--radius-percent);
-  aspect-ratio: var(--a);
+  height: var(calc(calc(var(--h)) * 1px));
+  width: var(calc(calc(var(--w)) * 1px));
+} */
 
+#addTaskButton {
+  background: transparent;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
 }
 
 #addTaskButton:hover {
   cursor: pointer;
-  background-color: lightblue;
+  /* background-color: orange; */
+  color: orange;
   transition: 0.2s;
 }
+
+.addtodotext:hover {
+  color: orange;
+}
+
+.createtaskbutton {
+  display: flex;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.creataskbutton:hover {
+  color: orange;
+}
+
+.plussign {
+  font-size: 20px;
+}
+
+
 
 .taskdivider {
   width: 90%;

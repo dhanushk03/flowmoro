@@ -54,16 +54,18 @@ const TodoList = () => {
   };
 
   const deleteTask = (id) => {
-    setTodoList(
-      todoList.filter((item) => {
-        return item.id != id;
-      })
-    );
+    setTimeout(function() {
+      setTodoList(
+        todoList.filter((item) => {
+          return item.id != id;
+        })
+      );
+    }, 200)
   };
 
-  var radius = !showInputForm ? 50 : 20;
-  var aspect = !showInputForm ? 1 : 4;
-  var align = !showInputForm ? "center" : "left";
+  var radius = !showInputForm ? 50 : 0;
+  var width = !showInputForm ? 40 : 40;
+  var height = !showInputForm ? 40 : 20;
 
   return (
     <div id="todoList">
@@ -102,7 +104,7 @@ const TodoList = () => {
                   <span id="taskDeadlineDays">days</span>
                 </div>
               }
-              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--a": aspect}}>{showInputForm? "Add To-do" : "New To-do"}</button>
+              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">Add To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>Add task</p></div>}</button>
             </div>
         </div>
         <div id="taskList">
@@ -124,9 +126,9 @@ const TodoList = () => {
               );
             })}
             <hr className="taskdivider" id="bottom-divider"></hr>
-            <div id="bottom-spacer"></div>
             {todoList.length == 0 && <h1 id="emptymessage">No items pending</h1>}
         </div>
+        <div id="bottom-spacer"></div>
     </div>
   );
 }

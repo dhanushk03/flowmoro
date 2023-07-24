@@ -71,7 +71,7 @@
 #completeButton:hover, #deleteButton:hover, .taskdownarrow:hover {
     cursor: pointer;
     color: white;
-    background-color: lightblue;
+    background-color: orange;
     transition: 0.2s;
 }
 
@@ -91,6 +91,7 @@
     text-align: center;
     border-radius: 50%;
     width: 20px;
+    aspect-ratio: 1;
     position: relative;
     bottom: 10px;
 }
@@ -100,6 +101,7 @@
     margin-top: 20px;
     margin-left: 5px;
     margin-right: 5px;
+    mix-blend-mode:difference;
 }
 
 @font-face {

@@ -120,6 +120,12 @@ const CountdownTimer = (props) => {
         }
     }
 
+    function endSession() {
+        setWorkSession(defaultWorkSessionNumber);
+        setBreakSession(defaultBreakSessionNumber);
+        resetTime();
+    }
+
     function resetTime() {
         if (isWork) {
             setRemainingTime(defaultRemainingTimeWork);
@@ -149,11 +155,14 @@ const CountdownTimer = (props) => {
                 </div>
             </div>
             <div className="buttons">
+                <button onClick={resetTime} className="resetbutton">
+                    <p id="reseticon">&#8634;</p>
+                </button>
                 <button onClick={() => setPaused(!paused)} className="playbutton">
                     {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                 </button>
-                <button onClick={resetTime} className="resetbutton">
-                    <p id="reseticon">&#8634;</p>
+                <button onClick={endSession} className="endsessionbutton">
+                    <p id="endsessiontext">END SESSION</p>
                 </button>
             </div>
         </div>
