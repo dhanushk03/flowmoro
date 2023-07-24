@@ -2,13 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./CountdownTimer.css";
 
-const defaultRemainingTimeWork = {
+var defaultRemainingTimeWork = {
     seconds: '00',
     minutes: '25',
     hours: '00',
 }
 
-const defaultRemainingTimeBreak = {
+var defaultRemainingTimeBreak = {
     seconds: '00',
     minutes: '05',
     hours: '00',
@@ -17,8 +17,8 @@ const defaultRemainingTimeBreak = {
 const defaultWorkSessionNumber = 1;
 const defaultBreakSessionNumber = 1;
 const defaultIsWork = true;
-const defaultTotalTimeInSecondsWork = 25 * 60;
-const defaultTotalTimeInSecondsRest = 5 * 60;
+var defaultTotalTimeInSecondsWork = 25 * 60;
+var defaultTotalTimeInSecondsRest = 5 * 60;
 
 const CountdownTimer = (props) => {
     /**
@@ -26,6 +26,14 @@ const CountdownTimer = (props) => {
      * As the timer ticks down, want to change the percentage of the arc colored white proportional to the amount of time remaining.
      * I want to provide an input form for the user to set their preferred time studying.
      */
+    const [counter, setCounter] = useState(1);
+    const [userSpecifiedTime, setUserSpecifiedTime] = useState(() => {
+        const bool = localStorage.getItem('userSpecifiedTime');
+        return bool == 'false' || bool == null ? false : true;
+    });  //fetch from localStorage later
+    const [userTimeInputHours, setUserTimeInputHours] = useState("00");
+    const [userTimeInputMinutes, setUserTimeInputMinutes] = useState("25");
+    const [userTimeInputSeconds, setUserTimeInputSeconds] = useState("00");
     const [remainingTime, setRemainingTime] = useState(() => {
         const time = JSON.parse(localStorage.getItem('remainingTime'));
         return time ? time : defaultRemainingTimeWork;
@@ -55,9 +63,10 @@ const CountdownTimer = (props) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             //document.title = `Flowmodoro ${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds}`;
-            if (!paused) {
+            if (!paused && userSpecifiedTime) {
                 updateRemainingTime();
             }
+            localStorage.setItem('userSpecifiedTime', String(userSpecifiedTime));
             localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
             localStorage.setItem('paused', String(paused));
             localStorage.setItem('remainingTimeInSeconds', String(remainingTimeInSeconds));
@@ -123,6 +132,8 @@ const CountdownTimer = (props) => {
     function endSession() {
         setWorkSession(defaultWorkSessionNumber);
         setBreakSession(defaultBreakSessionNumber);
+        setUserSpecifiedTime(false);
+        setIsWork(true);
         resetTime();
     }
 
@@ -137,21 +148,145 @@ const CountdownTimer = (props) => {
         setPaused(true);
     }
 
+    const handleChange = (event) => {
+        if (event.target.name === "inputHours") {
+            setUserTimeInputHours(event.target.value);
+        } 
+        else if (event.target.name === "inputMinutes") {
+            setUserTimeInputMinutes(event.target.value);
+        }
+        else if (event.target.name === "inputSeconds") {
+            setUserTimeInputSeconds(event.target.value);
+        }
+    };
+
+    function removeZeroes(num) {
+        if (num.charAt(0) == "0" && num.length > 1) {
+            return num.charAt(1);
+        } else {
+            return num;
+        }
+    }
+
+    function parseTime() {
+        var time = Number(userTimeInputSeconds) + 60 * Number(userTimeInputMinutes) + 3600 * Number(userTimeInputHours);
+        console.log(time);
+        return time
+    }
+
     var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
     var f = remainingTime.hours == "00" ? 90 : 68;
 
     return (
         <div className="wrapper">
-            <div className="session-counter">
-                {isWork? <h2>Focus {workSession}</h2> : <h2>Break {breakSession}</h2>}
-            </div>
+            {userSpecifiedTime ?
+                <div className="session-counter">
+                    {isWork? <h2>Focus {workSession}</h2> : <h2>Break {breakSession}</h2>}
+                </div>
+                :
+                <div className="session-counter">
+                    <h2>Select focus and break times</h2>
+                </div>
+            }
             <div className="countdown-timer" style={{"--x": x, "--f": f}}>
                 <div className="inner-circle">
-                    {remainingTime.hours != "00" && <span>{remainingTime.hours}</span>}
-                    {remainingTime.hours != "00" && <span>:</span>}
-                    <span>{remainingTime.minutes}</span>
-                    <span>:</span>
-                    <span>{remainingTime.seconds}</span>
+                    <div className="timertext">
+                        {userSpecifiedTime ?
+                            <span>
+                                {remainingTime.hours != "00" && <span>{remainingTime.hours}</span>}
+                                {remainingTime.hours != "00" && <span>:</span>}
+                            </span>
+                            :
+                            <span>
+                                <input 
+                                    type="text"
+                                    name="inputHours"
+                                    id="inputHours"
+                                    minLength={2}
+                                    maxLength={2}
+                                    className="timeinputform"
+                                    value={userTimeInputHours}
+                                    onChange={handleChange}
+                                />
+                                <span>:</span>
+                            </span>
+                        }
+                        {userSpecifiedTime ? 
+                            <span>
+                                <span>{remainingTime.minutes}</span>
+                                <span>:</span>
+                            </span>
+                            :
+                            <span>
+                                <input 
+                                    type="text"
+                                    name="inputMinutes"
+                                    id="inputMinutes"
+                                    minLength={2}
+                                    maxLength={2}
+                                    className="timeinputform"
+                                    value={userTimeInputMinutes}
+                                    onChange={handleChange}
+                                />
+                                <span>:</span>
+                            </span>
+                        }
+                        {userSpecifiedTime ? 
+                            <span>
+                                <span>{remainingTime.seconds}</span>
+                            </span>
+                            :
+                            <span>
+                                <input 
+                                    type="text"
+                                    name="inputSeconds"
+                                    id="inputSeconds"
+                                    minLength={2}
+                                    maxLength={2}
+                                    className="timeinputform"
+                                    value={userTimeInputSeconds}
+                                    onChange={handleChange}
+                                />
+                            </span>
+                        }
+                        {!userSpecifiedTime && 
+                            <button onClick={() => {
+                                if (counter == 1) {
+                                    setRemainingTime({
+                                        seconds: userTimeInputSeconds,
+                                        minutes: userTimeInputMinutes,
+                                        hours: userTimeInputHours
+                                    });
+                                    defaultTotalTimeInSecondsWork = parseTime();
+                                    setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
+                                    defaultRemainingTimeWork = {
+                                        seconds: userTimeInputSeconds,
+                                        minutes: userTimeInputMinutes,
+                                        hours: userTimeInputHours
+                                    };
+                                    setUserTimeInputSeconds("00");
+                                    setUserTimeInputMinutes("05");
+                                    setUserTimeInputHours("00");
+                                    setCounter(2);
+                                }
+                                else if (counter == 2) {
+                                    defaultTotalTimeInSecondsRest = parseTime();
+                                    defaultRemainingTimeBreak = {
+                                        seconds: userTimeInputSeconds,
+                                        minutes: userTimeInputMinutes,
+                                        hours: userTimeInputHours
+                                    };
+                                    setCounter(1);
+                                    setUserTimeInputSeconds("00");
+                                    setUserTimeInputMinutes("25");
+                                    setUserTimeInputHours("00");
+                                    setUserSpecifiedTime(true);
+                                }
+                            }} className="settimebutton">
+                                Set {counter == 1 ? "focus" : "break"} time
+                            </button>
+                        }
+                    </div>
                 </div>
             </div>
             <div className="buttons">

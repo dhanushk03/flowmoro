@@ -79,6 +79,7 @@ const TodoList = () => {
                   id="taskTitle"
                   value={taskTitle}
                   onChange={handleChange}
+                  required
               />
               <textarea
                   type="text"
