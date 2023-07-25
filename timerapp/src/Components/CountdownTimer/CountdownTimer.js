@@ -251,6 +251,23 @@ const CountdownTimer = (props) => {
                         }
                         {!userSpecifiedTime && 
                             <button onClick={() => {
+                                if (userTimeInputSeconds.length != 2 || userTimeInputMinutes.length != 2 
+                                    || userTimeInputHours.length != 2) {
+                                        return;
+                                }
+
+                                const validNums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+                                for(let i = 0; i < 2; i++) {
+                                    if (!(validNums.includes(userTimeInputHours.charAt(i)) && validNums.includes(userTimeInputMinutes.charAt(i)) 
+                                        && validNums.includes(userTimeInputSeconds.charAt(i)))) {
+                                            return;
+                                    }
+                                }
+
+                                if (Number(userTimeInputMinutes.charAt(0)) > 5 || Number(userTimeInputSeconds.charAt(0)) > 5) {
+                                        return;
+                                }
+
                                 if (counter == 1) {
                                     setRemainingTime({
                                         seconds: userTimeInputSeconds,
