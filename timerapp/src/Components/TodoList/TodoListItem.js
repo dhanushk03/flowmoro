@@ -28,6 +28,8 @@ const TodoListItem = (props) => {
     return (
       <div className="task">
         <div className="content" onClick={expandAndCollapse}>
+          <h4 id="tasktitle">{props.title}</h4>
+          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</p>
           <div id="metadata">
             <div id="buttons">
               <button id="completeButton"
@@ -49,8 +51,6 @@ const TodoListItem = (props) => {
               </button>
             </div>
           </div>
-          <h4 id="tasktitle">{props.title}</h4>
-          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</p>
           {(props.description != "" && !expanded) && <div className="taskdownarrow">&#8681;</div>}
           <p className="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
         </div>

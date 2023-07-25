@@ -185,7 +185,7 @@ const CountdownTimer = (props) => {
                 </div>
                 :
                 <div className="session-counter">
-                    <h2>Select focus and break times</h2>
+                    <h2>Set focus and break times</h2>
                 </div>
             }
             <div className="countdown-timer" style={{"--x": x, "--f": f}}>
