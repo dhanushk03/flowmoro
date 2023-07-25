@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar.js";
 import Home from "./Components/Home/Home.js";
 import CountdownTimer from "./Components/CountdownTimer/CountdownTimer.js";
 import TodoList from "./Components/TodoList/TodoList.js";
+import StudyLog from "./Components/StudyLog/StudyLog.js";
 import News from "./Components/News/News.js"
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/timer" element={<CountdownTimer />} />
           <Route path="/todolist" element={<TodoList />} />
+          <Route path="/studylog" element={<StudyLog />} />
           <Route path="/news" element={<News />} />
         </Routes>
       </Router>

@@ -1,5 +1,5 @@
-.news {
-    display: flex;
+.studylog {
+    display: block;
     color: white;
 }
 
@@ -7,4 +7,5 @@
     margin-left: auto;
     margin-right: auto;
     color: inherit;
+    text-align: center;
 }
