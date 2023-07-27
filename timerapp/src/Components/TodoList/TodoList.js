@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import TodoListItem from "./TodoListItem.js";
+import moment from "moment";
 import "../../App.css"
 
 const TodoList = () => {
@@ -9,6 +10,7 @@ const TodoList = () => {
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(0);
   const [showInputForm, setShowInputForm] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [todoList, setTodoList] = useState(() => {
     const localData = localStorage.getItem('todoList');
     return localData ? JSON.parse(localData) : [];
@@ -34,12 +36,16 @@ const TodoList = () => {
       setShowInputForm((prevShowInputForm) => !prevShowInputForm);
       return;
     }
-    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: uuidv4(), dateAdded: new Date().toLocaleDateString() };
+    if (!taskTitle) {
+      return;
+    }
+    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: uuidv4(), dateAdded: moment().format('LL') };
     setTodoList([newTask, ...todoList]);
     setTaskTitle("");
     setTaskDescription("");
     setTaskDeadline(0);
     setShowInputForm((prevShowInputForm) => !prevShowInputForm);
+    setEditing(false);
   };
 
   const completeTask = (id) => {
@@ -62,6 +68,17 @@ const TodoList = () => {
       );
     }, 200)
   };
+
+  const editTask = (id) => {
+    const filteredList = todoList.filter(item => item.id != id);
+    setTodoList(filteredList);
+    const editItem = todoList.find(item => item.id == id);
+    setShowInputForm(true);
+    setEditing(true);
+    setTaskTitle(editItem.title);
+    setTaskDescription(editItem.description);
+    setTaskDeadline(editItem.deadline);
+  }
 
   var radius = !showInputForm ? 50 : 0;
   var width = !showInputForm ? 40 : 40;
@@ -105,7 +122,7 @@ const TodoList = () => {
                   <span id="taskDeadlineDays">days</span>
                 </div>
               }
-              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">Add To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>Add task</p></div>}</button>
+              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>
             </div>
         </div>
         <div id="taskList">
@@ -122,6 +139,7 @@ const TodoList = () => {
                     dateAdded={item.dateAdded}
                     completeTask={completeTask} 
                     deleteTask={deleteTask}
+                    editTask={editTask}
                   />
                 </div>
               );

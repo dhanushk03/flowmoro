@@ -161,12 +161,12 @@
 #addTaskButton:hover {
   cursor: pointer;
   /* background-color: orange; */
-  color: orange;
+  background: orange;
   transition: 0.2s;
 }
 
 .addtodotext:hover {
-  color: orange;
+  background: orange;
 }
 
 .createtaskbutton {

@@ -314,7 +314,7 @@ const CountdownTimer = (props) => {
                     {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                 </button>
                 <button onClick={endSession} className="endsessionbutton">
-                    <p id="endsessiontext">&#11036;</p>
+                    <p id="endsessiontext">&#10003;</p>
                 </button>
             </div>
         </div>
