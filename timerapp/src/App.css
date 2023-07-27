@@ -24,17 +24,16 @@
   border-radius: 50%;
 }
 
-.navbar li, .navbar .navbar-item {
+.navbar li, .navbar .navbar-item, .active {
   color: inherit;
   text-decoration: none;
   height: 100%;
   display: flex;
-  align-items: center;
   padding: .25rem;
-  margin-left: 20px;
   font-family: "San Francisco";
   font-size: 18px;
   overflow-x: scroll;
+  opacity: 0.8;
 }
 
 .navbar-left {
@@ -44,20 +43,31 @@
   align-items: center;
 }
 
+#timer {
+  margin-left: auto;
+}
+
+#news {
+  margin-right: 30px;
+}
+
 .navbar-right {
   display: flex;
-  margin-left: auto;
-  margin-right: 30px;
+  margin-left: 20px;
   align-items: center;
 }
 
-.navbar-item:hover, .navbar-item:active {
+.navbar-item:hover {
   /* background-color: white; */
   color: orange;
   cursor: pointer;
-  border-bottom: 1px solid orange;
-  opacity: 0.7;
+  /* border-bottom: 1px solid orange; */
   transition: 0.2s;
+  opacity: 1;
+}
+
+.active {
+  color: blue;
 }
 
 #todoList {
