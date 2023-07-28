@@ -1,4 +1,12 @@
-.wrapper {
+.todolistandtimer {
+    display: flex;
+}
+
+/* 
+    EVERYTHING BELOW IS WORKING CSS TIMER CODE
+*/
+
+.countdown-wrapper {
     /**display: flex;**/
     justify-content: center;
     align-items: center;

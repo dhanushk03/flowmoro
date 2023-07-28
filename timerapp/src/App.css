@@ -20,10 +20,6 @@
   padding: 10px 25px;
 }
 
-.flmdlogo {
-  border-radius: 50%;
-}
-
 .navbar li, .navbar .navbar-item, .active {
   color: inherit;
   text-decoration: none;
@@ -32,8 +28,12 @@
   padding: .25rem;
   font-family: "San Francisco";
   font-size: 18px;
-  overflow-x: scroll;
   opacity: 0.8;
+}
+
+.flmdlogo {
+  border-radius: 50%;
+  opacity: 1;
 }
 
 .navbar-left {
