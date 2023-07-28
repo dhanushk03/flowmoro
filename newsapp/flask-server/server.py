@@ -49,17 +49,21 @@ def get_sentiment(text):
 def days_ago(n):
   return date.today() - timedelta(n)
  
-def News(search="everything"):
+def News(search="none"):
      
     # Init
     newsapi = NewsApiClient(api_key='2675fca71af44d579f7488241c5158de')
-
+    top_headlines = ""
     # /v2/top-headlines
-    top_headlines = newsapi.get_everything( q=search,
-                                            language='en',
-                                            sort_by='publishedAt',
-                                            from_param=str(days_ago(29)))["articles"][:75]
-    #print(top_headlines)
+    if search == "none":
+         top_headlines = newsapi.get_top_headlines( country="us",
+                                            language='en')["articles"]
+    else:
+         top_headlines = newsapi.get_top_headlines( category = search,
+                                            country="us",
+                                            language='en')["articles"]
+   
+    print(len(top_headlines))
     list1 = []
     list2 = []
     
@@ -72,7 +76,7 @@ def News(search="everything"):
             currSentence = preprocess_text(ar["description"])
             currTitle = preprocess_text(ar["title"])
             ar["sentiment"] = round((get_sentiment(currSentence) + get_sentiment(currTitle))/2, 2)
-            if ar["sentiment"] < 0.25:
+            if ar["sentiment"] < 0:
                 top_headlines.pop(i)
                 i-=1
         
@@ -83,8 +87,8 @@ def News(search="everything"):
     #results.reverse()
     
     top_headlines = sorted(top_headlines, key= lambda x: x["sentiment"], reverse=True)
-
-    data = {"articles": top_headlines[:40]}
+    print(len(top_headlines))
+    data = {"articles": top_headlines}
     return data
 
 
@@ -99,13 +103,12 @@ topic = 'everything'
 #Members Api route
 @app.route("/sentiment")
 def articles():
-    return News("baseball")
+    return News()
 
 @app.route("/change_topic", methods = ["GET", "POST"])
 def topicChange():
-    print(News(request.get_json()["question"]))
     if(request.method == 'POST'):
-        return News(request.get_json()["question"])
+        return News(request.get_json()["topic"])
 
 if __name__ == "__main__":
     app.run(debug=True)

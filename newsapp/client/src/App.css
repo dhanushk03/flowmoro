@@ -7,6 +7,9 @@
     box-sizing: border-box;
 }
 
+/*.App{
+    background: linear-gradient(45deg, plum, blue);
+}*/
 :root {
     --primary-text-color: #183b56;
     --secondary-text-color: #577592;
@@ -51,7 +54,7 @@ ul {
   row-gap: 20px;
   align-items: start;
 }
-main {
+.App {
   padding-block: 20px;
   margin-top: 80px;
 }

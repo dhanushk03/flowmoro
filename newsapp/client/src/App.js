@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NewsItem from "./components/NewsItem"
 import './App.css';
 import { TopicForm } from "./components/TopicForm";
+import { NewsNav } from "./components/NewsNav";
 import { Container } from "semantic-ui-react";
 
 function App(){
@@ -38,17 +39,20 @@ function App(){
     urlToImage={article.urlToImage}
   />);
 
+  const topicsList = ["general", "business", "science", "health", "entertainment", "sports", "technology"];
+
   return (
-    <main>
-      <TopicForm
-        onNewTopic={news =>
+    <div class = "App">
+      <div>
+        <NewsNav topicsList = {topicsList} onNewTopic={news =>
           setData(news.articles)
-        }
-      />
+        }/>
+      </div>
+      
       <div className = "cards-container container flex">
          {mapped}
       </div>
-    </main>
+    </div>
       
     )
 }

@@ -1,0 +1,36 @@
+.css-umysuv {
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #000;
+    
+}
+.css-397oyn {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px 0 4px;
+    margin: 0 20px;
+}
+.css-cwdrld {
+    display: inline-block;
+    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+}
+.css-1wjnrbv {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 4px;
+    -webkit-transition: background 0.6s ease;
+    transition: background 0.6s ease;
+    vertical-align: middle;
+}
