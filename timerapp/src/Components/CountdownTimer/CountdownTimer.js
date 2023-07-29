@@ -149,7 +149,9 @@ const CountdownTimer = (props) => {
         setBreakSession(defaultBreakSessionNumber);
         setUserSpecifiedTime(false);
         setIsWork(true);
-        resetTime();
+        setRemainingTime(defaultRemainingTimeWork);
+        setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
+        setPaused(true);
     }
 
     function resetTime() {
