@@ -10,7 +10,8 @@ const TimerTodoList = () => {
     });
     return (
         <div className="timertodolist">
-            <hr></hr>
+            <h3 style={{position:"relative", left:"5px"}}>To-dos</h3>
+            <hr style={{height:"1px"}}></hr>
             {todoList.map((item) => {
                 return (
                     <div>
@@ -18,7 +19,7 @@ const TimerTodoList = () => {
                             title={item.title}
                             deadline={item.deadline}
                         />
-                        <hr></hr>
+                        <hr style={{height:"1px"}}></hr>
                     </div>
                 );
             })}

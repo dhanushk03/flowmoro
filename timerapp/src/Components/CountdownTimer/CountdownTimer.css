@@ -4,8 +4,9 @@
 
 .showtodosbutton {
     display: block;
-    width: 120px;
+    width: 60px;
     height: 60px;
+    font-size: xx-large;
     margin-left: 30px;
     margin-top: 25px;
     background: transparent;
@@ -17,6 +18,7 @@
 .showtodosbutton:hover {
     cursor: pointer;
     background: orange;
+    transition: 0.2s;
 }
 
 /* 
@@ -27,8 +29,10 @@
     /**display: flex;**/
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    margin-left: -200px;
+    left: 50%;
+
 }
 
 .session-counter {

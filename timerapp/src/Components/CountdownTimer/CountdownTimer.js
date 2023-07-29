@@ -55,7 +55,9 @@ const CountdownTimer = (props) => {
         const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
         return time ? time : original;
     });
-    const [showTodos, setShowTodos] = useState(true);
+    const [showTodos, setShowTodos] = useState(false);
+    const [isDesktopBig, setIsDesktopBig] = useState(window.innerWidth > 1100);
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -73,6 +75,22 @@ const CountdownTimer = (props) => {
         }, 1000);
         return () => clearTimeout(intervalId);
     }, [remainingTime, paused]);
+
+    const updateMedia = () => {
+        setIsDesktopBig(window.innerWidth > 1100);
+        if (!isDesktopBig && showTodos) {
+            setShowTodos(false);
+            setIsCollapsed(true);
+        } else if (isCollapsed && isDesktopBig) {
+            setShowTodos(true);
+            setIsCollapsed(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
 
     function updateRemainingTime() {
         //case1: seconds goes from 00 to 59
@@ -178,9 +196,10 @@ const CountdownTimer = (props) => {
         <div className="todolistandtimer">
             <div className="showtodoslogic">
                 <button onClick={() => {
-                    setShowTodos(!showTodos);
-                }} className="showtodosbutton">
-                    Show Todos
+                    if (isDesktopBig) {
+                        setShowTodos(!showTodos);
+                }}} className="showtodosbutton">
+                    &#9776;
                 </button>
                 {showTodos && <TimerTodoList />}
             </div>
