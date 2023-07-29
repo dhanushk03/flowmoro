@@ -1,0 +1,16 @@
+.timertodolistitem {
+    display: flex;
+    color: white;
+    width: 80%;
+}
+
+.timertodotitle {
+    color: white;
+    margin-left: 10px;
+}
+
+.timertododeadline {
+    color: white;
+    margin-right: 5px;
+    float: right;
+}

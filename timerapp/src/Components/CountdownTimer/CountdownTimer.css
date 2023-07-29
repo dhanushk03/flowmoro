@@ -2,6 +2,23 @@
     display: flex;
 }
 
+.showtodosbutton {
+    display: block;
+    width: 120px;
+    height: 60px;
+    margin-left: 30px;
+    margin-top: 25px;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.showtodosbutton:hover {
+    cursor: pointer;
+    background: orange;
+}
+
 /* 
     EVERYTHING BELOW IS WORKING CSS TIMER CODE
 */
@@ -10,6 +27,8 @@
     /**display: flex;**/
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .session-counter {

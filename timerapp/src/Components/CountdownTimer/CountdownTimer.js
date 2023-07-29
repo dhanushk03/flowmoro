@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import TodoList from "../TodoList/TodoList.js";
+import TimerTodoList from "./TimerTodoList.js";
 import "./CountdownTimer.css";
 
 var defaultRemainingTimeWork = {
@@ -55,6 +55,7 @@ const CountdownTimer = (props) => {
         const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
         return time ? time : original;
     });
+    const [showTodos, setShowTodos] = useState(true);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -175,7 +176,14 @@ const CountdownTimer = (props) => {
 
     return (
         <div className="todolistandtimer">
-            < TodoList />
+            <div className="showtodoslogic">
+                <button onClick={() => {
+                    setShowTodos(!showTodos);
+                }} className="showtodosbutton">
+                    Show Todos
+                </button>
+                {showTodos && <TimerTodoList />}
+            </div>
             <div className="countdown-wrapper">
                 {userSpecifiedTime ?
                     <div className="session-counter">
