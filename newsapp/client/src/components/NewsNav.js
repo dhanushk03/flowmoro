@@ -1,11 +1,12 @@
-import React from "react"
 import './newsNav.css'
+import React, { useState, useEffect } from 'react'
 
 export const NewsNav = (props) => {
+  const[isPressed, setIsPressed] = useState(false);
     const elements = props.topicsList.map(item => {
         return (
-            <li class="css-cwdrld">
-                <a class="css-1wjnrbv" href = "javascript:;"
+            <li>
+                <a href = "#"
                 onClick={async () => {
                     const response = await fetch("/change_topic", {
                       method: "POST",
@@ -28,15 +29,37 @@ export const NewsNav = (props) => {
             </li>
         );
     });
-    
     return(
+      
+      <div class="dropdown">
+        <button class="dropdown-btn"  
+        onClick = {() => {
+          setIsPressed(!isPressed)
+          console.log(isPressed);
+        }}>
+          <span>Topics</span>
+          <span class="arrow"></span>
+        </button>
+        {
+          isPressed && 
+          <ul class="dropdown-content" role="menu" id="dropdown-menu">
+            {elements}
+          </ul>
+        }
+        
+        <script>
+          
+        </script>
+      </div>
+      
 
-        <div class="css-umysuv">
+        /*<div class="css-umysuv">
             <ul class="css-397oyn">
                 {elements}
             </ul>
-        </div>
+        </div>*/
     )
+    
 
 };
 

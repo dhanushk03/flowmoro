@@ -11,6 +11,8 @@ from datetime import timedelta, date
 from textblob import TextBlob
 from flask import request
 import flask
+import http.client, urllib.parse
+import json
 
 #nltk.download('all')
 analyzer = SentimentIntensityAnalyzer()
@@ -48,6 +50,57 @@ def get_sentiment(text):
 
 def days_ago(n):
   return date.today() - timedelta(n)
+
+def MediaStack(search="none"):
+    conn = http.client.HTTPConnection('api.mediastack.com')
+    params = ""
+    if search == "none":
+        params = urllib.parse.urlencode({
+        'access_key': '461e90510d2966b9157877e3c4303428',
+        'sort': 'published_desc',
+        'countries': 'us',
+        })
+    else:
+        params = urllib.parse.urlencode({
+            'access_key': '461e90510d2966b9157877e3c4303428',
+            'categories': search,
+            'sort': 'published_desc',
+            'countries': 'us',
+            })
+
+    conn.request('GET', '/v1/news?{}'.format(params))
+
+    res = conn.getresponse()
+    top_headlines = res.read()
+    top_headlines = json.loads(top_headlines)["data"]
+    print(top_headlines)
+    titles = []
+
+    i = 0
+    for ar in top_headlines[:]:
+        if type(ar["description"]) is None or type(ar["title"]) is None or ar["image"] is None or ar["author"] is None or ar["title"] in titles:
+            top_headlines.pop(i)
+            i-=1
+        else:
+            currSentence = preprocess_text(ar["description"])
+            currTitle = preprocess_text(ar["title"])
+            ar["sentiment"] = round((get_sentiment(currSentence) + get_sentiment(currTitle))/2, 2)
+            if ar["sentiment"] < 0:
+                    top_headlines.pop(i)
+                    i-=1
+            else:
+                titles.append(ar["title"])
+            
+        i+=1    
+        
+
+    #results = [val for (_, val) in sorted(zip(list2, list1), key=lambda x: x[0])]
+    #results.reverse()
+    
+    top_headlines = sorted(top_headlines, key= lambda x: x["sentiment"], reverse=True)
+    data = {"articles": top_headlines}
+    return data
+
  
 def News(search="none"):
      
@@ -62,8 +115,11 @@ def News(search="none"):
          top_headlines = newsapi.get_top_headlines( category = search,
                                             country="us",
                                             language='en')["articles"]
+    test = newsapi.get_top_headlines(
+                                            country="us",
+                                            language='en')
    
-    print(len(top_headlines))
+    print(test)
     list1 = []
     list2 = []
     
@@ -103,12 +159,12 @@ topic = 'everything'
 #Members Api route
 @app.route("/sentiment")
 def articles():
-    return News()
+    return MediaStack()
 
 @app.route("/change_topic", methods = ["GET", "POST"])
 def topicChange():
     if(request.method == 'POST'):
-        return News(request.get_json()["topic"])
+        return MediaStack(request.get_json()["topic"])
 
 if __name__ == "__main__":
     app.run(debug=True)

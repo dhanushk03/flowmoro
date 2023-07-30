@@ -39,6 +39,20 @@ function App(){
     urlToImage={article.urlToImage}
   />);
 
+  var mapped2 = data.map(article => <NewsItem 
+    author={article.author}
+    category={article.category}
+    country={article.country}
+    description={article.description}
+    image={article.image}
+    language={article.language}
+    published_at={article.published_at}
+    sentiment={article.sentiment}
+    source={article.source}
+    title={article.title}
+    url={article.url}
+  />);
+
   const topicsList = ["general", "business", "science", "health", "entertainment", "sports", "technology"];
 
   return (
@@ -50,7 +64,7 @@ function App(){
       </div>
       
       <div className = "cards-container container flex">
-         {mapped}
+         {mapped2}
       </div>
     </div>
       

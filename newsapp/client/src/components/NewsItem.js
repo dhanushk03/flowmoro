@@ -5,8 +5,8 @@ import './newsItem.css'
 const NewsItem = (props) => {
     function componentDidMount() {
         const newImage = new Image();
-        newImage.src = props.urlToImage;
-        window[props.urlToImage] = newImage;
+        newImage.src = props.image;
+        window[props.image] = newImage;
         
     }
     componentDidMount();
@@ -15,7 +15,7 @@ const NewsItem = (props) => {
             
             <div className = "card">
                 <div className="card-header">
-                    <img src = {props.urlToImage} alt = {replacementURL}/>
+                    <img src = {props.image} alt = {replacementURL}/>
                 </div>
                 <div className = "card-content">
                     <h3>
@@ -23,7 +23,7 @@ const NewsItem = (props) => {
                             {props.title}
                         </a>
                     </h3>
-                    <h6 className="news-source" id="news-source">{props.source} {props.publishedAt}</h6>
+                    <h6 className="news-source" id="news-source">{props.source} {props.published_at}</h6>
                     <p id = "news-description">
                         <HtmlRenderer htmlString={props.description} />
                     </p>
