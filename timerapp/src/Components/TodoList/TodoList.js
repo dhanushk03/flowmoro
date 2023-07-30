@@ -15,6 +15,10 @@ const TodoList = () => {
     const localData = localStorage.getItem('todoList');
     return localData ? JSON.parse(localData) : [];
   });
+  const [todoIdToTitle, setTodoIdToTitle] = useState(() => {
+    const localData = localStorage.getItem('todoIdToTitle');
+    return localData ? JSON.parse(localData) : {};
+  });
   const [completedList, setCompletedList] = useState([]);
 
   useEffect(() => {

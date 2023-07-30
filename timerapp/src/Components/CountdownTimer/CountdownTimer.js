@@ -249,7 +249,7 @@ const CountdownTimer = (props) => {
         setRemainingTime(defaultRemainingTimeWork);
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         setPaused(true);
-        setStudyLog([{...studySession, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
+        setStudyLog([{"studySession": {...studySession}, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
         localStorage.setItem("studyLog", JSON.stringify(studyLog));
         setStudySession({});
         localStorage.setItem("studySession", JSON.stringify(studySession));
