@@ -1,14 +1,33 @@
 import React from "react";
+import { useState } from "react";
 import "./TimerTodoListItem.css";
 
 const TimerTodoListItem = (props) => {
+    const [inProgress, setInProgress]= useState(() => {
+        return props.isActive(props.id);
+    });
+
+    var bg = "transparent";
+
+    function initializeBackground() {
+        if (inProgress) {
+            bg = "orange";
+        } else {
+            bg = "transparent";
+        }
+    }
+
+    initializeBackground();
+
     return (
-        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} onClick={() => {
+        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg}} onClick={() => {
             var item = document.getElementById(`timertodolistitem${props.id}`);
-            if (item.style.background == "orange") {
+            if (inProgress) {
                 item.style.background = "transparent";
+                setInProgress(false);
             } else {
                 item.style.background = "orange";
+                setInProgress(true);
             }
             props.updateActive(props.id);
         }}>

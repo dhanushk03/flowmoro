@@ -6,11 +6,11 @@ import "./TimerTodoList.css";
 const TimerTodoList = (props) => {
     const [todoList, setTodoList] = useState(() => {
         let list = localStorage.getItem("todoList");
-        return list ? JSON.parse(list) : []
+        return list ? JSON.parse(list) : [];
     });
     return (
         <div className="timertodolist">
-            <h3 style={{position:"relative", left:"5px"}}>To-dos</h3>
+            <h3 style={{position:"relative", left:"5px"}}>Selcet to-dos being worked on</h3>
             <hr style={{height:"1px"}}></hr>
             {todoList.map((item) => {
                 return (
@@ -20,6 +20,7 @@ const TimerTodoList = (props) => {
                             deadline={item.deadline}
                             id={item.id}
                             updateActive={props.updateActive}
+                            isActive={props.isActive}
                         />
                         <hr style={{height:"1px"}}></hr>
                     </div>

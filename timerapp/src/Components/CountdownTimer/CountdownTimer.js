@@ -25,9 +25,6 @@ var defaultTotalTimeInSecondsRest = 5 * 60;
 const CountdownTimer = (props) => {
     const [counter, setCounter] = useState(1);
     const [userSpecifiedTime, setUserSpecifiedTime] = useState(() => {
-        localStorage.removeItem("studyLog");
-        localStorage.removeItem("studySession");
-        localStorage.removeItem("activeTasks");
         const bool = localStorage.getItem('userSpecifiedTime');
         return bool == 'false' || bool == null ? false : true;
     });
@@ -39,6 +36,7 @@ const CountdownTimer = (props) => {
         return time ? time : defaultRemainingTimeWork;
     });
     const [paused, setPaused] = useState(() => {
+        localStorage.removeItem('studyLog');
         const bool = localStorage.getItem('paused');
         return bool == 'false' ? false : true;
     });
@@ -78,6 +76,26 @@ const CountdownTimer = (props) => {
         return tasks? tasks : [];
     });
 
+    const [initialPlay, setInitialPlay] = useState(() => {
+        const bool = localStorage.getItem('initialPlay');
+        return (!bool || bool == 'false') ? false : true;
+    });
+
+    const [startDate, setStartDate] = useState(() => {
+        const date = localStorage.getItem('startDate');
+        return date ? date : moment().format('LL');
+    });
+
+    const [startTime, setStartTime] = useState(() => {
+        const time = localStorage.getItem('startTime');
+        return time ? time : moment().format('LT');
+    });
+
+    const [endTime, setEndTime] = useState(() => {
+        const time = localStorage.getItem('endTime');
+        return time ? time : moment().format('LT');
+    });
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmodoro`;
@@ -85,6 +103,7 @@ const CountdownTimer = (props) => {
                 updateRemainingTime();
                 incrementActiveTasks();
             }
+            setEndTime(moment().format('LT'));
             localStorage.setItem('userSpecifiedTime', String(userSpecifiedTime));
             localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
             localStorage.setItem('paused', String(paused));
@@ -95,6 +114,10 @@ const CountdownTimer = (props) => {
             localStorage.setItem('studySession', JSON.stringify(studySession));
             localStorage.setItem('activeTasks', JSON.stringify(activeTasks));
             localStorage.setItem('studyLog', JSON.stringify(studyLog));
+            localStorage.setItem('initialPlay', JSON.stringify(initialPlay));
+            localStorage.setItem('startDate', String(startDate));
+            localStorage.setItem('startTime', String(startTime));
+            localStorage.setItem('endTime', String(endTime));
         }, 1000);
         console.log(activeTasks);
         console.log(studySession);
@@ -182,6 +205,13 @@ const CountdownTimer = (props) => {
         });
     }
 
+    function isActive(id) {
+        var found = activeTasks.some(function(activeItemId) {
+            return activeItemId == id;
+        });
+        return found;
+    }
+
     function updateActive(id) {
         var found = activeTasks.some(function(activeItemId) {
             if (activeItemId == id) {
@@ -204,6 +234,14 @@ const CountdownTimer = (props) => {
         if (!userSpecifiedTime) {
             return;
         }
+        async function updateEndTime() {
+            const time = await moment().format('LT');
+            setEndTime(time);
+            console.log(endTime);
+            localStorage.setItem('endTime', JSON.stringify(endTime));
+        }
+        updateEndTime();
+        setShowTodos(false);
         setWorkSession(defaultWorkSessionNumber);
         setBreakSession(defaultBreakSessionNumber);
         setUserSpecifiedTime(false);
@@ -211,7 +249,7 @@ const CountdownTimer = (props) => {
         setRemainingTime(defaultRemainingTimeWork);
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         setPaused(true);
-        setStudyLog([{...studySession}, ...studyLog]);
+        setStudyLog([{...studySession, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
         localStorage.setItem("studyLog", JSON.stringify(studyLog));
         setStudySession({});
         localStorage.setItem("studySession", JSON.stringify(studySession));
@@ -268,7 +306,7 @@ const CountdownTimer = (props) => {
                 }}} className="showtodosbutton">
                     &#9776;
                 </button>
-                {showTodos && <TimerTodoList updateActive={updateActive}/>}
+                {showTodos && <TimerTodoList updateActive={updateActive} isActive={isActive}/>}
             </div>
             <div className="countdown-wrapper">
                 {userSpecifiedTime ?
@@ -390,6 +428,7 @@ const CountdownTimer = (props) => {
                                         setUserTimeInputMinutes("25");
                                         setUserTimeInputHours("00");
                                         setUserSpecifiedTime(true);
+                                        setInitialPlay(true);
                                     }
                                 }} className="settimebutton">
                                     Set {counter == 1 ? "focus" : "break"} time
@@ -402,7 +441,19 @@ const CountdownTimer = (props) => {
                     <button onClick={resetTime} className="resetbutton">
                         <p id="reseticon">&#8634;</p>
                     </button>
-                    <button onClick={() => setPaused(!paused)} className="playbutton">
+                    <button onClick={() => {
+                        setPaused(!paused);
+                        if (initialPlay) {
+                            setStartDate(moment().format('LL'));
+                            setStartTime(moment().format('LT'));
+                            setEndTime(moment().format('LT'));
+                            setInitialPlay(false);
+                            localStorage.setItem('startDate', String(startDate));
+                            localStorage.setItem('startTime', String(startTime));
+                            localStorage.setItem('endTime', String(endTime));
+                            localStorage.setItem('initialPlay', String(initialPlay));
+                        }
+                    }} className="playbutton">
                         {paused? <div id="startBtn"></div> : <div id="pauseBtn"></div>}
                     </button>
                     <button onClick={endSession} className="endsessionbutton">
