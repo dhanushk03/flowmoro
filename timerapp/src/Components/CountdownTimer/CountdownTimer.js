@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import TimerTodoList from "./TimerTodoList.js";
 import "./CountdownTimer.css";
+import moment from "moment";
 
 var defaultRemainingTimeWork = {
     seconds: '00',
@@ -24,6 +25,9 @@ var defaultTotalTimeInSecondsRest = 5 * 60;
 const CountdownTimer = (props) => {
     const [counter, setCounter] = useState(1);
     const [userSpecifiedTime, setUserSpecifiedTime] = useState(() => {
+        localStorage.removeItem("studyLog");
+        localStorage.removeItem("studySession");
+        localStorage.removeItem("activeTasks");
         const bool = localStorage.getItem('userSpecifiedTime');
         return bool == 'false' || bool == null ? false : true;
     });
@@ -59,11 +63,27 @@ const CountdownTimer = (props) => {
     const [isDesktopBig, setIsDesktopBig] = useState(window.innerWidth > 1100);
     const [isCollapsed, setIsCollapsed] = useState(false);
 
+    const[studyLog, setStudyLog] = useState(() => {
+        let log = JSON.parse(localStorage.getItem("studyLog"));
+        return log? log : [];
+    });
+
+    const[studySession, setStudySession] = useState(() => {
+        let session = JSON.parse(localStorage.getItem("studySession"));
+        return session? session : {};
+    });
+
+    const[activeTasks, setActiveTasks] = useState(() => {
+        let tasks = JSON.parse(localStorage.getItem("activeTasks"));
+        return tasks? tasks : [];
+    });
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmodoro`;
             if (!paused && userSpecifiedTime) {
                 updateRemainingTime();
+                incrementActiveTasks();
             }
             localStorage.setItem('userSpecifiedTime', String(userSpecifiedTime));
             localStorage.setItem('remainingTime', JSON.stringify(remainingTime));
@@ -72,7 +92,12 @@ const CountdownTimer = (props) => {
             localStorage.setItem('isWork', String(isWork));
             localStorage.setItem('workSession', String(workSession));
             localStorage.setItem('breakSession', String(breakSession));
+            localStorage.setItem('studySession', JSON.stringify(studySession));
+            localStorage.setItem('activeTasks', JSON.stringify(activeTasks));
+            localStorage.setItem('studyLog', JSON.stringify(studyLog));
         }, 1000);
+        console.log(activeTasks);
+        console.log(studySession);
         return () => clearTimeout(intervalId);
     }, [remainingTime, paused]);
 
@@ -144,7 +169,41 @@ const CountdownTimer = (props) => {
         }
     }
 
+    function incrementActiveTasks() {
+        activeTasks.forEach(function(id) {
+            setStudySession((prevSession) => {
+                if (id in prevSession) {
+                    prevSession[id] += 1;
+                } else {
+                    prevSession[id] = 1;
+                }
+                return prevSession;
+            });
+        });
+    }
+
+    function updateActive(id) {
+        var found = activeTasks.some(function(activeItemId) {
+            if (activeItemId == id) {
+                setActiveTasks((prevActiveTasks) => {
+                    return prevActiveTasks.filter((prevId) => {
+                        return prevId != id;
+                    })
+                });
+            }
+            return activeItemId == id;
+        });
+        if (!found) {
+            setActiveTasks((prevActiveTasks) => {
+                return [...prevActiveTasks, id];
+            });
+        }
+    }
+
     function endSession() {
+        if (!userSpecifiedTime) {
+            return;
+        }
         setWorkSession(defaultWorkSessionNumber);
         setBreakSession(defaultBreakSessionNumber);
         setUserSpecifiedTime(false);
@@ -152,6 +211,12 @@ const CountdownTimer = (props) => {
         setRemainingTime(defaultRemainingTimeWork);
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         setPaused(true);
+        setStudyLog([{...studySession}, ...studyLog]);
+        localStorage.setItem("studyLog", JSON.stringify(studyLog));
+        setStudySession({});
+        localStorage.setItem("studySession", JSON.stringify(studySession));
+        setActiveTasks([]);
+        localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
     }
 
     function resetTime() {
@@ -203,7 +268,7 @@ const CountdownTimer = (props) => {
                 }}} className="showtodosbutton">
                     &#9776;
                 </button>
-                {showTodos && <TimerTodoList />}
+                {showTodos && <TimerTodoList updateActive={updateActive}/>}
             </div>
             <div className="countdown-wrapper">
                 {userSpecifiedTime ?

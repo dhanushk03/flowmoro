@@ -3,7 +3,7 @@ import { useState } from "react";
 import TimerTodoListItem from "./TimerTodoListItem.js";
 import "./TimerTodoList.css";
 
-const TimerTodoList = () => {
+const TimerTodoList = (props) => {
     const [todoList, setTodoList] = useState(() => {
         let list = localStorage.getItem("todoList");
         return list ? JSON.parse(list) : []
@@ -18,6 +18,8 @@ const TimerTodoList = () => {
                         <TimerTodoListItem
                             title={item.title}
                             deadline={item.deadline}
+                            id={item.id}
+                            updateActive={props.updateActive}
                         />
                         <hr style={{height:"1px"}}></hr>
                     </div>
