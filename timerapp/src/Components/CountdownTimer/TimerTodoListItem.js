@@ -4,7 +4,7 @@ import "./TimerTodoListItem.css";
 
 const TimerTodoListItem = (props) => {
     const [inProgress, setInProgress]= useState(() => {
-        return props.isActive(props.id);
+        return props.isActive(props.id, props.title);
     });
 
     var bg = "transparent";
@@ -29,7 +29,7 @@ const TimerTodoListItem = (props) => {
                 item.style.background = "orange";
                 setInProgress(true);
             }
-            props.updateActive(props.id);
+            props.updateActive(props.id, props.title);
         }}>
             <h4 className="timertodotitle">{props.title}</h4>
         </div>

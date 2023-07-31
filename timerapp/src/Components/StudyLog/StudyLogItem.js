@@ -3,16 +3,21 @@ import "./StudyLogItem.css";
 
 const StudyLogItem = (props) => {
     const numTasks = Object.keys(props.studySession).length;
-    const sortedStudySession = Object.entries(props.studySession).map(([ide, secondse])=> {
+    const sortedStudySession = Object.entries(props.studySession).map(([id, seconds])=> {
         return ({
-            "title": ide,
-            "time": secondse
+            "id": id,
+            "time": seconds
         });
     });
     sortedStudySession.sort(function(a, b) {
         return b.time - a.time;
     })
-    console.log(sortedStudySession);
+    function convertToHMS(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds - hours * 3600) / 60);
+        const secs = seconds - (hours * 3600) - (minutes * 60);
+        return `${hours > 0 ? hours + "h" : ""} ${minutes > 0 ? minutes + "m" : ""} ${secs > 0 ? secs + "s" : ""}`;
+    }
     return (
         <div className="studylogitem">
             <h2>{props.startDate}</h2>
@@ -21,7 +26,7 @@ const StudyLogItem = (props) => {
                 {
                     sortedStudySession.map((idAndTime) => {
                         return (
-                            <p>{idAndTime["title"]} - {idAndTime["time"]}</p>
+                            <p>{props.idToTitle[idAndTime["id"]]} - {convertToHMS(idAndTime["time"])}</p>
                         );
                     })
                 }

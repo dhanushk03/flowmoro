@@ -36,7 +36,6 @@ const CountdownTimer = (props) => {
         return time ? time : defaultRemainingTimeWork;
     });
     const [paused, setPaused] = useState(() => {
-        localStorage.removeItem('studyLog');
         const bool = localStorage.getItem('paused');
         return bool == 'false' ? false : true;
     });
@@ -96,6 +95,11 @@ const CountdownTimer = (props) => {
         return time ? time : moment().format('LT');
     });
 
+    const [idToTitle, setIdToTitle] = useState(() => {
+        const mapping = JSON.parse(localStorage.getItem('idToTitle'));
+        return mapping ? mapping : {};
+    })
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmodoro`;
@@ -118,6 +122,7 @@ const CountdownTimer = (props) => {
             localStorage.setItem('startDate', String(startDate));
             localStorage.setItem('startTime', String(startTime));
             localStorage.setItem('endTime', String(endTime));
+            localStorage.setItem('idToTitle', JSON.stringify(idToTitle));
         }, 1000);
         console.log(activeTasks);
         console.log(studySession);
@@ -212,7 +217,7 @@ const CountdownTimer = (props) => {
         return found;
     }
 
-    function updateActive(id) {
+    function updateActive(id, title) {
         var found = activeTasks.some(function(activeItemId) {
             if (activeItemId == id) {
                 setActiveTasks((prevActiveTasks) => {
@@ -224,10 +229,16 @@ const CountdownTimer = (props) => {
             return activeItemId == id;
         });
         if (!found) {
+            setIdToTitle((prevIdToTitle) => {
+                prevIdToTitle[id] = title;
+                return prevIdToTitle;
+            })
             setActiveTasks((prevActiveTasks) => {
                 return [...prevActiveTasks, id];
             });
+            localStorage.setItem('idToTitle', JSON.stringify(idToTitle));
         }
+        localStorage.setItem('activeTasks', JSON.stringify(activeTasks));
     }
 
     function endSession() {
@@ -249,12 +260,14 @@ const CountdownTimer = (props) => {
         setRemainingTime(defaultRemainingTimeWork);
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         setPaused(true);
-        setStudyLog([{"studySession": {...studySession}, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
+        setStudyLog([{"studySession": {...studySession}, "idToTitle": {...idToTitle}, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
         localStorage.setItem("studyLog", JSON.stringify(studyLog));
         setStudySession({});
         localStorage.setItem("studySession", JSON.stringify(studySession));
         setActiveTasks([]);
         localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
+        setIdToTitle({});
+        localStorage.setItem("idToTitle", JSON.stringify(idToTitle));
     }
 
     function resetTime() {

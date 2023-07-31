@@ -10,7 +10,7 @@ const TimerTodoList = (props) => {
     });
     return (
         <div className="timertodolist">
-            <h3 style={{position:"relative", left:"5px"}}>Selcet to-dos being worked on</h3>
+            <h3 style={{position:"relative", left:"5px"}}>Select to-dos you're working on</h3>
             <hr style={{height:"1px"}}></hr>
             {todoList.map((item) => {
                 return (

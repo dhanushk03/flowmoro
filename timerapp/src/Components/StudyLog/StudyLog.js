@@ -32,6 +32,7 @@ const StudyLog = () => {
                 {studyLog.map((item) => 
                     <StudyLogItem
                         studySession={item.studySession}
+                        idToTitle={item.idToTitle}
                         startDate={item.startDate}
                         startTime={item.startTime}
                         endTime={item.endTime}
