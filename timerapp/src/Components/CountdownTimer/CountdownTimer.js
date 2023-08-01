@@ -309,6 +309,8 @@ const CountdownTimer = (props) => {
 
     var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
     var f = remainingTime.hours == "00" ? 90 : 68;
+    var offset = showTodos ? 175 : 0;
+    console.log(offset);
 
     return (
         <div className="todolistandtimer">
@@ -321,7 +323,7 @@ const CountdownTimer = (props) => {
                 </button>
                 {showTodos && <TimerTodoList updateActive={updateActive} isActive={isActive}/>}
             </div>
-            <div className="countdown-wrapper">
+            <div style={{"--offset": offset}} className="countdown-wrapper">
                 {userSpecifiedTime ?
                     <div className="session-counter">
                         {isWork? <h2>Focus {workSession}</h2> : <h2>Break {breakSession}</h2>}

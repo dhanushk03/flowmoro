@@ -27,11 +27,13 @@
 
 .countdown-wrapper {
     /**display: flex;**/
+    --offset: 175;
+    --offset-calc: calc(calc(var(--offset)) * 1px);
     justify-content: center;
     align-items: center;
     position: absolute;
     margin-left: -200px;
-    left: 50%;
+    left: calc(50% + var(--offset-calc));
 
 }
 

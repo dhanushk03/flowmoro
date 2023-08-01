@@ -4,7 +4,9 @@
     padding-bottom: 25px;
     overflow-y: scroll;
     position: relative;
-    background-color: transparent;
+    background-color: #49008a;
+    padding: 10px;
+    border-radius: 4px;
     color: white;
     margin-top: 25px;
     margin-left: 25px;

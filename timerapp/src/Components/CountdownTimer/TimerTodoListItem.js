@@ -11,9 +11,9 @@ const TimerTodoListItem = (props) => {
 
     function initializeBackground() {
         if (inProgress) {
-            bg = "orange";
+            bg = "#ab52fa";
         } else {
-            bg = "transparent";
+            bg = "#7b00e8";
         }
     }
 
@@ -23,10 +23,10 @@ const TimerTodoListItem = (props) => {
         <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg}} onClick={() => {
             var item = document.getElementById(`timertodolistitem${props.id}`);
             if (inProgress) {
-                item.style.background = "transparent";
+                item.style.background = "#7b00e8";
                 setInProgress(false);
             } else {
-                item.style.background = "orange";
+                item.style.background = "#ab52fa";
                 setInProgress(true);
             }
             props.updateActive(props.id, props.title);
