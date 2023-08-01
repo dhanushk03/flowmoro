@@ -27,7 +27,7 @@
 
 .countdown-wrapper {
     /**display: flex;**/
-    --offset: 175;
+    --offset: 163;
     --offset-calc: calc(calc(var(--offset)) * 1px);
     justify-content: center;
     align-items: center;

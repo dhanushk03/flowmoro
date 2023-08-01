@@ -309,7 +309,7 @@ const CountdownTimer = (props) => {
 
     var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
     var f = remainingTime.hours == "00" ? 90 : 68;
-    var offset = showTodos ? 175 : 0;
+    var offset = showTodos ? 163 : 0;
     console.log(offset);
 
     return (
