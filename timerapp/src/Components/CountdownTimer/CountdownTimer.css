@@ -131,7 +131,7 @@
     z-index: 1;
 }
 
-.buttons {
+.countdown-buttons {
     display: flex;
     align-items: center;
     justify-content: center;

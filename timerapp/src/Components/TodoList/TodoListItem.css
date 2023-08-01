@@ -29,24 +29,25 @@
     cursor: pointer;
 }
 
-#metadata {
+.metadata {
     float: right;
     margin-left: 10px;
 }
 
-#taskdeadline {
+.taskdeadline {
     margin-top: 5px;
     text-align: center;
 }
 
-#buttons {
-    display: flex;
-    margin-bottom: 5px;
+.buttons {
+    display: none;
+    /* margin-bottom: 5px; */
     margin-right: 4px;
     position: relative;
+    top: 3px;
 }
 
-#completeButton {
+.completeButton {
     display: block;
     background: transparent;
     width: 33px;
@@ -57,7 +58,7 @@
     border: none;
 }
 
-#deleteButton {
+.deleteButton {
     display: block;
     width: 33px;
     font-size: medium;
@@ -68,7 +69,7 @@
     border: none;
 }
 
-#editButton {
+.editButton {
     display: block;
     background: transparent;
     width: 33px;
@@ -79,32 +80,32 @@
     border: none;
 }
 
-#completeButton:hover, #deleteButton:hover, #editButton:hover, .taskdownarrow:hover {
+.completeButton:hover, .deleteButton:hover, .editButton:hover, .taskdownarrow:hover {
     cursor: pointer;
     color: white;
 }
 
-#completeButton:hover {
+.completeButton:hover {
     background: green;
     transition: 0.2s;
 }
 
-#editButton:hover, .taskdownarrow:hover {
+.editButton:hover, .taskdownarrow:hover {
     background: orange;
     transition: 0.2s;
 }
 
-#deleteButton:hover {
+.deleteButton:hover {
     background: red;
     transition: 0.2s;
 }
 
-#tasktitle {
+.tasktitle {
     margin-top: 5px;
     margin-left: 5px;
 }
 
-#taskdateadded {
+.taskdateadded {
     margin-top: -16px;
     margin-left: 5px;
 }

@@ -452,7 +452,7 @@ const CountdownTimer = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="buttons">
+                <div className="countdown-buttons">
                     <button onClick={resetTime} className="resetbutton">
                         <p id="reseticon">&#8634;</p>
                     </button>

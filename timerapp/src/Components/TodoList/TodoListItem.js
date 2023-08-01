@@ -13,7 +13,7 @@ const TodoListItem = (props) => {
       dayDisplay = props.deadline + " days";
     }
 
-    function expandAndCollapse() {
+    function expandAndCollapseDescription() {
       var desc = document.getElementById(`taskdescription${props.id}`);
       if (desc.style.display == "block") {
         desc.style.display = "none";
@@ -24,13 +24,23 @@ const TodoListItem = (props) => {
       }
     }
 
+    function expandButtons() {
+      var desc = document.getElementById(`buttons${props.id}`);
+      desc.style.display = "flex";
+    }
+
+    function collapseButtons() {
+      var desc = document.getElementById(`buttons${props.id}`);
+      desc.style.display = "none";
+    }
+
 
     return (
       <div className="task">
-        <div className="content" onClick={expandAndCollapse}>
-          <div id="metadata">
-            <div id="buttons">
-              <button id="editButton"
+        <div className="content" onClick={() => {expandAndCollapseDescription();}} onMouseEnter={expandButtons} onMouseLeave={collapseButtons}>
+          <div className="metadata">
+            <div className="buttons" id={`buttons${props.id}`}>
+              <button className="editButton"
                 onClick={() => {
                   props.editTask(props.id);
                 }}
@@ -38,7 +48,7 @@ const TodoListItem = (props) => {
                   &#9998;
               </button>
 
-              <button id="completeButton"
+              <button className="completeButton"
               onClick={() => {
                 props.completeTask(props.id);
               }}
@@ -47,7 +57,7 @@ const TodoListItem = (props) => {
                 &#10003;
               </button>
 
-              <button id="deleteButton"
+              <button className="deleteButton"
               onClick={() => {
                 props.deleteTask(props.id);
               }}
@@ -57,8 +67,8 @@ const TodoListItem = (props) => {
               </button>
             </div>
           </div>
-          <h4 id="tasktitle">{props.title}</h4>
-          <p id="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</p>
+          <h4 className="tasktitle">{props.title}</h4>
+          <p className="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; <b style={{"color": "orange"}}>Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</b></p>
           {(props.description != "" && !expanded) && <div className="taskdownarrow">&#8681;</div>}
           <p className="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
         </div>

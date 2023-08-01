@@ -26,7 +26,7 @@ const StudyLogItem = (props) => {
                 {
                     sortedStudySession.map((idAndTime) => {
                         return (
-                            <p>{props.idToTitle[idAndTime["id"]]} - {convertToHMS(idAndTime["time"])}</p>
+                            <p><b>{props.idToTitle[idAndTime["id"]]}</b> - {convertToHMS(idAndTime["time"])}</p>
                         );
                     })
                 }

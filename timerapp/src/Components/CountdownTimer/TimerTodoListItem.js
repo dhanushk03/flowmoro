@@ -8,25 +8,30 @@ const TimerTodoListItem = (props) => {
     });
 
     var bg = "transparent";
+    var textcolor = "white";
 
     function initializeBackground() {
         if (inProgress) {
-            bg = "#ab52fa";
+            bg = "orange";
+            textcolor = "black";
         } else {
             bg = "#7b00e8";
+            textcolor = "white";
         }
     }
 
     initializeBackground();
 
     return (
-        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg}} onClick={() => {
+        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg, "color":textcolor}} onClick={() => {
             var item = document.getElementById(`timertodolistitem${props.id}`);
             if (inProgress) {
                 item.style.background = "#7b00e8";
+                item.style.color = "white";
                 setInProgress(false);
             } else {
-                item.style.background = "#ab52fa";
+                item.style.background = "orange";
+                item.style.color = "black";
                 setInProgress(true);
             }
             props.updateActive(props.id, props.title);
