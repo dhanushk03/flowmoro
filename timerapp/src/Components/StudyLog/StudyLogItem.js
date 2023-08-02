@@ -25,8 +25,9 @@ const StudyLogItem = (props) => {
                 <p>{props.startTime} &#160; - &#160; {props.endTime} &#160;&#x2022;&#160; {numTasks} tasks worked on</p>
                 {
                     sortedStudySession.map((idAndTime) => {
+                        var title = props.idToTitle[idAndTime["id"]];
                         return (
-                            <p><b>{props.idToTitle[idAndTime["id"]]}</b> - {convertToHMS(idAndTime["time"])}</p>
+                            <p><b>{title.length < 50? title : title.substring(0, 49) + "..."}</b> | {convertToHMS(idAndTime["time"])}</p>
                         );
                     })
                 }

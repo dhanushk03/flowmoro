@@ -40,7 +40,8 @@
 }
 
 .buttons {
-    display: none;
+    display: flex;
+    visibility: hidden;
     /* margin-bottom: 5px; */
     margin-right: 4px;
     position: relative;

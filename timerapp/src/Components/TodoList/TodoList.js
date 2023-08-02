@@ -125,6 +125,9 @@ const TodoList = () => {
               <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>
             </div>
         </div>
+        <div>
+          <h2 className="numtaskspending" style={{"textAlign": "center", "color": "white"}}>{todoList.length} tasks pending</h2>
+        </div>
         <div id="taskList">
             {todoList.map((item) => {
 

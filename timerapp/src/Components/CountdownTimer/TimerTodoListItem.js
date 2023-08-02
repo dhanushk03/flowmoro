@@ -12,7 +12,7 @@ const TimerTodoListItem = (props) => {
 
     function initializeBackground() {
         if (inProgress) {
-            bg = "orange";
+            bg = "#FF7F50";
             textcolor = "black";
         } else {
             bg = "#7b00e8";
@@ -30,12 +30,17 @@ const TimerTodoListItem = (props) => {
                 item.style.color = "white";
                 setInProgress(false);
             } else {
-                item.style.background = "orange";
+                item.style.background = "#FF7F50";
                 item.style.color = "black";
                 setInProgress(true);
             }
             props.updateActive(props.id, props.title);
         }}>
+            {/* <button onClick={props.completeTask(props.id)} className="timertodolistitemcompletebutton" style={{"float": "right", "height": "10px", "width": "10px"}}>
+                &#10003;
+            </button> */}
+            <div className="timertodolistitemcompletebutton" onClick={() => {props.completeTask(props.id)}}>&#10003;</div>
+            {/* <p style={{"float": "right"}}>Sample text</p> */}
             <h4 className="timertodotitle">{props.title}</h4>
         </div>
     );

@@ -26,12 +26,14 @@ const TodoListItem = (props) => {
 
     function expandButtons() {
       var desc = document.getElementById(`buttons${props.id}`);
-      desc.style.display = "flex";
+      desc.style.visibility = "visible";
+      // desc.style.display = "flex";
     }
 
     function collapseButtons() {
       var desc = document.getElementById(`buttons${props.id}`);
-      desc.style.display = "none";
+      desc.style.visibility = "hidden";
+      // desc.style.display = "none";
     }
 
 
