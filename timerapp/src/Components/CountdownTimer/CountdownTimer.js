@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import TimerTodoList from "./TimerTodoList.js";
 import "./CountdownTimer.css";
 import moment from "moment";
+import sound1 from "./positive-notification-new-level-152480.mp3";
+import sound2 from "./simple-short-call-loop-153308.mp3";
 
 var defaultRemainingTimeWork = {
     seconds: '00',
@@ -153,12 +155,16 @@ const CountdownTimer = (props) => {
             setIsWork((prevIsWork) => !prevIsWork);
             setWorkSession((prevWorkSession) => prevWorkSession + 1);
             setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
+            const audio = new Audio(sound1);
+            audio.play();
             return;
         } else if (remainingTime.seconds === "00" && remainingTime.minutes === "00" && remainingTime.hours === "00" && !isWork) {
             setRemainingTime(defaultRemainingTimeWork);
             setIsWork((prevIsWork) => !prevIsWork);
             setBreakSession((prevWorkSession) => prevWorkSession + 1);
             setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
+            const audio = new Audio(sound2);
+            audio.play();
             return;
         }
 
