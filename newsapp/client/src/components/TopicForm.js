@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { Form, Input, Rating, Button } from "semantic-ui-react";
 
 export const TopicForm = ({ onNewTopic }) => {
@@ -41,4 +41,4 @@ export const TopicForm = ({ onNewTopic }) => {
       </Form.Field>
     </Form>
   );
-};
+};*/

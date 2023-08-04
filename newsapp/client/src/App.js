@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import NewsItem from "./components/NewsItem"
 import './App.css';
-import { TopicForm } from "./components/TopicForm";
+//import { TopicForm } from "./components/TopicForm";
 import { NewsNav } from "./components/NewsNav";
-import { Container } from "semantic-ui-react";
+//import MongoDb from './server';
 
-function App(){
+function App(collection_name){
+  
+  //var axios = require('axios');
   const[data, setData] = useState([])
   //const[question, setQuestion] = useState([])
 
   
-  useEffect(() => {
+  /*useEffect(() => {
       fetch("/sentiment").then(
         res => res.json()
       ).then(
@@ -23,11 +25,38 @@ function App(){
     
     
 
+  }, [])*/
+
+
+  useEffect(() => {
+    fetch("http://localhost:5050/articles/").then(
+      res => res.json()
+    ).then(
+      data => {
+        console.log(data);
+        setData(data);
+
+      }
+    )
+  
+  
+
   }, [])
 
 
 
-  var mapped = data.map(article => <NewsItem 
+  /*useEffect(() => {
+    
+    setData(MongoDb("general"));
+  
+
+  }, [])*/
+
+
+
+
+
+  /*var mapped = data.map(article => <NewsItem 
     author={article.author}
     content={article.content}
     description={article.description}
@@ -37,7 +66,7 @@ function App(){
     title={article.title}
     url={article.url}
     urlToImage={article.urlToImage}
-  />);
+  />);*/
 
   var mapped2 = data.map(article => <NewsItem 
     author={article.author}
@@ -59,7 +88,7 @@ function App(){
     <div class = "App">
       <div>
         <NewsNav topicsList = {topicsList} onNewTopic={news =>
-          setData(news.articles)
+          setData(news)
         }/>
       </div>
       

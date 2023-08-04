@@ -59,6 +59,7 @@ def MediaStack(search="none"):
         'access_key': '461e90510d2966b9157877e3c4303428',
         'sort': 'published_desc',
         'countries': 'us',
+        'limit': '100',
         })
     else:
         params = urllib.parse.urlencode({
@@ -66,6 +67,7 @@ def MediaStack(search="none"):
             'categories': search,
             'sort': 'published_desc',
             'countries': 'us',
+            'limit': '100',
             })
 
     conn.request('GET', '/v1/news?{}'.format(params))

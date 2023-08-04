@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 export const NewsNav = (props) => {
   const[isPressed, setIsPressed] = useState(false);
     const elements = props.topicsList.map(item => {
-        return (
+        /*return (
             <li>
                 <a href = "#"
                 onClick={async () => {
@@ -27,7 +27,26 @@ export const NewsNav = (props) => {
                     
                   }}>{item}</a>
             </li>
-        );
+        );*/
+
+        return (
+          <li>
+              <a href = "#"
+              onClick={() => {
+                fetch("http://localhost:5050/articles/" + item + "/").then(
+                  res => res.json()
+                ).then(
+                  data => {
+                    console.log(data);
+                    props.onNewTopic(data);
+            
+                  }
+                )
+      
+                  
+                }}>{item}</a>
+          </li>
+      );
     });
     return(
       
