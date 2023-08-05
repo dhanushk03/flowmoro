@@ -27,7 +27,8 @@ const TodoList = () => {
     } else if (event.target.name == "taskDescription") {
       setTaskDescription(event.target.value);
     } else {
-      setTaskDeadline(Number(event.target.value));
+      console.log(typeof(event.target.value));
+      setTaskDeadline(event.target.value);
     }
   };
 
@@ -43,7 +44,7 @@ const TodoList = () => {
     setTodoList([newTask, ...todoList]);
     setTaskTitle("");
     setTaskDescription("");
-    setTaskDeadline(0);
+    setTaskDeadline(moment().format('LL'));
     setShowInputForm((prevShowInputForm) => !prevShowInputForm);
     setEditing(false);
   };
@@ -105,6 +106,7 @@ const TodoList = () => {
                   id="taskDescription"
                   value={taskDescription}
                   onChange={handleChange}
+                  style={{"maxWidth": "400px"}}
               />
             </div>
             }
@@ -112,14 +114,15 @@ const TodoList = () => {
               {showInputForm && 
                 <div id="taskDeadlineContainer">
                   <input
-                      type="Number"
+                      type="Date"
                       placeholder="Deadline"
                       name="taskDeadline"
                       id="taskDeadline"
                       value={taskDeadline}
                       onChange={handleChange}
+                      style={{"width": "110px"}}
                   />
-                  <span id="taskDeadlineDays">days</span>
+                  {/* <span id="taskDeadlineDays">days</span> */}
                 </div>
               }
               <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>

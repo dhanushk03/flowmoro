@@ -58,7 +58,7 @@ const CountdownTimer = (props) => {
         const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
         return time ? time : original;
     });
-    const [showTodos, setShowTodos] = useState(false);
+    const [showTodos, setShowTodos] = useState(true);
     const [isDesktopBig, setIsDesktopBig] = useState(window.innerWidth > 1100);
     const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -107,7 +107,9 @@ const CountdownTimer = (props) => {
             document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmodoro`;
             if (!paused && userSpecifiedTime) {
                 updateRemainingTime();
-                incrementActiveTasks();
+                if (isWork) {
+                    incrementActiveTasks();
+                }
             }
             setEndTime(moment().format('LT'));
             localStorage.setItem('userSpecifiedTime', String(userSpecifiedTime));
@@ -132,7 +134,7 @@ const CountdownTimer = (props) => {
     }, [remainingTime, paused]);
 
     const updateMedia = () => {
-        setIsDesktopBig(window.innerWidth > 1100);
+        setIsDesktopBig(window.innerWidth > 800);
         if (!isDesktopBig && showTodos) {
             setShowTodos(false);
             setIsCollapsed(true);

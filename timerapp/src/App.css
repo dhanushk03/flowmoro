@@ -142,14 +142,17 @@
   text-align: left;
   justify-content: left;
   border: 1px solid white;
+  border-radius: 4px;
 }
 
-#taskDeadlineDays {
+/* #taskDeadlineDays {
   margin-left: -5px;
-}
+} */
 
 #taskDeadlineContainer {
   display: flex;
+  position: relative;
+  right: 9px;
 }
 
 /* #addTaskButton {
