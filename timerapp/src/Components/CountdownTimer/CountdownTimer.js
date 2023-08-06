@@ -403,7 +403,7 @@ const CountdownTimer = (props) => {
                                 </span>
                             }
                             {!userSpecifiedTime && 
-                                <p style={{"fontSize":"12px", "color": "white"}}><span>HH</span>:<span>MM</span>:<span>SS</span></p>
+                                <p style={{"fontSize":"12px", "color": "white", "marginTop": "-8px"}}><span style={{"padding": "45px"}}>HH</span><span style={{"padding": "45px"}}>MM</span><span style={{"padding": "45px"}}>SS</span></p>
                             }
                             {!userSpecifiedTime && 
                                 <button onClick={() => {
