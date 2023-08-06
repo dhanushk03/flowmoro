@@ -1,17 +1,23 @@
 import React from "react";
+import moment from "moment";
 import { useState } from "react";
 import "./TodoListItem.css";
 
+const months = ["January", "February", "March", "April", "May", "June", "August",
+                "September", "October", "November", "December"];
+
 const TodoListItem = (props) => {
     const [expanded, setExpanded] = useState(false);
+    const inputDate = new Date(props.deadline);
     var dayDisplay = 0;
-    if (props.deadline == 0) {
-      dayDisplay = "Today";
-    } else if (props.deadline == 1) {
-      dayDisplay = "Tomm";
-    } else {
-      dayDisplay = props.deadline + " days";
-    }
+    // if (props.deadline == 0) {
+    //   dayDisplay = "Today";
+    // } else if (props.deadline == 1) {
+    //   dayDisplay = "Tomm";
+    // } else {
+    //   dayDisplay = props.deadline + " days";
+    // }
+    dayDisplay = moment(inputDate).format("LL");
 
     function expandAndCollapseDescription() {
       var desc = document.getElementById(`taskdescription${props.id}`);
@@ -69,11 +75,11 @@ const TodoListItem = (props) => {
               </button>
             </div>
           </div>
-          <h4 className="tasktitle">{props.title}</h4>
-          <p className="taskdateadded">{props.dateAdded} &#160;&#x2022;&#160; <b style={{"color": "orange"}}>Due {dayDisplay == "Today" || dayDisplay == "Tomm" ? dayDisplay : "in " + dayDisplay}</b></p>
+          <h3 className="tasktitle">{props.title}</h3>
+          <h5 className="taskdateadded">Added {props.dateAdded} &#160;&#x2022;&#160; Due {dayDisplay}</h5>
           {(props.description != "" && !expanded) && <div className="taskdownarrow">&#8681;</div>}
-          <p className="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
         </div>
+        <p className="taskdescription" id={`taskdescription${props.id}`}>{props.description}</p>
       </div>
     );
 };

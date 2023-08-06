@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import StudyLogItem from "./StudyLogItem.js";
 import "./StudyLog.css";
 
@@ -14,17 +15,6 @@ const StudyLog = () => {
         return localData ? JSON.parse(localData) : [];
     });
 
-    // function mapIdToTitle() {
-    //     for(let i = 0; i < studyLog.length; i++) {
-    //         const sessionObject = studyLog[i];
-    //         const studySession = sessionObject.studySession;
-    //         setStudyLog((prevStudyLog) => {
-
-    //         })
-
-    //     }
-    // }
-
     return (
         <div className="studylog">
             {/* <h1 className="title">This is the study log page</h1> */}
@@ -36,6 +26,7 @@ const StudyLog = () => {
                         startDate={item.startDate}
                         startTime={item.startTime}
                         endTime={item.endTime}
+                        id={uuidv4()}
                     />
                 )}
             </div>

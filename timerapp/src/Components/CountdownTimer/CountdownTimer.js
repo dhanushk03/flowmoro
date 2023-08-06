@@ -157,7 +157,7 @@ const CountdownTimer = (props) => {
             setIsWork((prevIsWork) => !prevIsWork);
             setWorkSession((prevWorkSession) => prevWorkSession + 1);
             setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
-            const audio = new Audio(sound1);
+            const audio = new Audio(sound2);
             audio.play();
             return;
         } else if (remainingTime.seconds === "00" && remainingTime.minutes === "00" && remainingTime.hours === "00" && !isWork) {

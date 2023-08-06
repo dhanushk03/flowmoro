@@ -8,7 +8,7 @@ import "../../App.css"
 const TodoList = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [taskDeadline, setTaskDeadline] = useState(0);
+  const [taskDeadline, setTaskDeadline] = useState(moment().format('LL'));
   const [showInputForm, setShowInputForm] = useState(false);
   const [editing, setEditing] = useState(false);
   const [todoList, setTodoList] = useState(() => {
