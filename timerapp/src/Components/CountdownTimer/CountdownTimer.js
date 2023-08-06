@@ -403,6 +403,9 @@ const CountdownTimer = (props) => {
                                 </span>
                             }
                             {!userSpecifiedTime && 
+                                <p style={{"fontSize":"12px", "color": "white"}}><span>HH</span>:<span>MM</span>:<span>SS</span></p>
+                            }
+                            {!userSpecifiedTime && 
                                 <button onClick={() => {
                                     if (userTimeInputSeconds.length != 2 || userTimeInputMinutes.length != 2 
                                         || userTimeInputHours.length != 2) {
