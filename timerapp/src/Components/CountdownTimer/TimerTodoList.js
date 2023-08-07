@@ -31,7 +31,8 @@ const TimerTodoList = (props) => {
             })
             );
         }, 200)
-        };
+    };
+    
     return (
         <div className="timertodolist">
             <h3 style={{"textAlign": "center"}}>Click on the to-dos you're working on. &#10003; them off when completed.</h3>

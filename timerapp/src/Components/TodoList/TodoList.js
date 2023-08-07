@@ -9,7 +9,8 @@ const TodoList = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(moment().format('LL'));
-  const [showInputForm, setShowInputForm] = useState(false);
+  const [taskId, setTaskId] = useState(null);
+  const [showInputForm, setShowInputForm] = useState(true);
   const [editing, setEditing] = useState(false);
   const [todoList, setTodoList] = useState(() => {
     const localData = localStorage.getItem('todoList');
@@ -27,7 +28,7 @@ const TodoList = () => {
     } else if (event.target.name == "taskDescription") {
       setTaskDescription(event.target.value);
     } else {
-      console.log(typeof(event.target.value));
+      console.log(event.target.value);
       setTaskDeadline(event.target.value);
     }
   };
@@ -40,12 +41,14 @@ const TodoList = () => {
     if (!taskTitle) {
       return;
     }
-    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: uuidv4(), dateAdded: moment().format('LL') };
+    const addedId = taskId == null? uuidv4() : taskId;
+    const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: addedId, dateAdded: moment().format('LL') };
     setTodoList([newTask, ...todoList]);
     setTaskTitle("");
     setTaskDescription("");
     setTaskDeadline(moment().format('LL'));
-    setShowInputForm((prevShowInputForm) => !prevShowInputForm);
+    setTaskId(null);
+    // setShowInputForm((prevShowInputForm) => !prevShowInputForm);
     setEditing(false);
   };
 
@@ -79,6 +82,7 @@ const TodoList = () => {
     setTaskTitle(editItem.title);
     setTaskDescription(editItem.description);
     setTaskDeadline(editItem.deadline);
+    setTaskId(editItem.id);
   }
 
   var radius = !showInputForm ? 50 : 0;
@@ -133,7 +137,6 @@ const TodoList = () => {
         </div>
         <div id="taskList">
             {todoList.map((item) => {
-
               return (
                 <div>
                   <hr className="taskdivider"></hr>

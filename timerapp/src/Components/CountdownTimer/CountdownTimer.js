@@ -34,8 +34,11 @@ const CountdownTimer = (props) => {
     const [userTimeInputMinutes, setUserTimeInputMinutes] = useState("25");
     const [userTimeInputSeconds, setUserTimeInputSeconds] = useState("00");
     const [remainingTime, setRemainingTime] = useState(() => {
-        const time = JSON.parse(localStorage.getItem('remainingTime'));
-        return time ? time : defaultRemainingTimeWork;
+        if (userSpecifiedTime) {
+            const time = JSON.parse(localStorage.getItem('remainingTime'));
+            return time ? time : defaultRemainingTimeWork;
+        }
+        return defaultRemainingTimeWork;
     });
     const [paused, setPaused] = useState(() => {
         const bool = localStorage.getItem('paused');
@@ -54,9 +57,13 @@ const CountdownTimer = (props) => {
         return bool == 'false' ? false : true;
     });
     const [remainingTimeInSeconds, setRemainingTimeInSeconds] = useState(() => {
-        const time = Number(localStorage.getItem('remainingTimeInSeconds'));
-        const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
-        return time ? time : original;
+        if (userSpecifiedTime) {
+            const time = Number(localStorage.getItem('remainingTimeInSeconds'));
+            const original = isWork ? defaultTotalTimeInSecondsWork : defaultTotalTimeInSecondsRest;
+            return time ? time : original;
+        } else {
+            return defaultTotalTimeInSecondsWork;
+        }
     });
     const [showTodos, setShowTodos] = useState(true);
     const [isDesktopBig, setIsDesktopBig] = useState(window.innerWidth > 1100);
@@ -266,7 +273,9 @@ const CountdownTimer = (props) => {
         setUserSpecifiedTime(false);
         setIsWork(true);
         setRemainingTime(defaultRemainingTimeWork);
+        localStorage.setItem("remainingTime", JSON.stringify(defaultRemainingTimeWork));
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
+        localStorage.setItem("remainingTimeInSeconds", String(defaultTotalTimeInSecondsWork));
         setPaused(true);
         setStudyLog([{"studySession": {...studySession}, "idToTitle": {...idToTitle}, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
         localStorage.setItem("studyLog", JSON.stringify(studyLog));
