@@ -18,19 +18,31 @@
 }*/
 .card {
     width: 360px;
-    min-height: 400px;
+    height: 400px;
     box-shadow: 0 0 4px #d4ecff;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #fff;
-    overflow: hidden;
+    background-color: #8b00ff;
+    overflow-y: scroll;
     transition: all 0.3s ease;
+    color: var(--secondary-text-color);;
 }
+:root {
+    --primary-text-color: orange;
+    --secondary-text-color: white;
+    --accent-color: black;
+}
+
 
 .card:hover {
     box-shadow: 1px 1px 8px #d4ecff;
     background-color: #f9fdff;
+    color: black;
     transform: translateY(-2px);
+}
+.title{
+    color: inherit;
+    font-style: bold;
 }
 
 .card-header img {
@@ -41,8 +53,14 @@
 
 .card-content {
     padding: 12px;
+    color: inherit;
 }
 
 .news-source {
     margin-block: 12px;
 }
+.description{
+    color: inherit;
+    font-style: normal;
+}
+

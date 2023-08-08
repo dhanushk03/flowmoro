@@ -25,6 +25,10 @@
     transition-delay: calc(60ms * var(--delay));
   }
 
+  .dropdown-btn span{
+    overflow-x: auto;
+  }
+
   .dropdown-btn:hover{
     background: orange;
   }
@@ -56,6 +60,10 @@
     transition: 0.5s;
     transition-delay: calc(60ms * var(--delay));
     left: 0;
+  }
+
+  .dropdown-content li a{
+    overflow-x: auto;
   }
   
   .dropdown-content.menu-open li {

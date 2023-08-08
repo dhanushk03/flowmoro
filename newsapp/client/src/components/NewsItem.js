@@ -19,15 +19,14 @@ const NewsItem = (props) => {
                 </div>
                 <div className = "card-content">
                     <h3>
-                        <a href = {props.url}>
+                        <a href = {props.url} className = "title" target="_blank" rel="noreferrer">
                             {props.title}
                         </a>
                     </h3>
                     <h6 className="news-source" id="news-source">{props.source} {props.published_at}</h6>
-                    <p id = "news-description">
+                    <p id = "news-description" className="description">
                         <HtmlRenderer htmlString={props.description} />
                     </p>
-                    <h1>Sentiment: {props.sentiment}</h1>
                 </div>
                 
             </div>
