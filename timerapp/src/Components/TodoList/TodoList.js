@@ -10,7 +10,7 @@ const TodoList = () => {
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDeadline, setTaskDeadline] = useState(moment().format('LL'));
   const [taskId, setTaskId] = useState(null);
-  const [showInputForm, setShowInputForm] = useState(true);
+  const [showInputForm, setShowInputForm] = useState(false);
   const [editing, setEditing] = useState(false);
   const [todoList, setTodoList] = useState(() => {
     const localData = localStorage.getItem('todoList');
@@ -35,7 +35,7 @@ const TodoList = () => {
 
   const addTask = () => {
     if (!showInputForm) {
-      setShowInputForm((prevShowInputForm) => !prevShowInputForm);
+      setShowInputForm(true);
       return;
     }
     if (!taskTitle) {
@@ -43,7 +43,7 @@ const TodoList = () => {
     }
     const addedId = taskId == null? uuidv4() : taskId;
     const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: addedId, dateAdded: moment().format('LL') };
-    setTodoList([newTask, ...todoList]);
+    setTodoList([...todoList, newTask]);
     setTaskTitle("");
     setTaskDescription("");
     setTaskDeadline(moment().format('LL'));
@@ -87,7 +87,8 @@ const TodoList = () => {
 
   var radius = !showInputForm ? 50 : 0;
   var width = !showInputForm ? 40 : 40;
-  var height = !showInputForm ? 40 : 20;
+  var height = !showInputForm ? 80 : 40;
+
 
   return (
     <div id="todoList">
@@ -134,7 +135,7 @@ const TodoList = () => {
                   id="taskDescription"
                   value={taskDescription}
                   onChange={handleChange}
-                  style={{"maxWidth": "400px"}}
+                  style={{"maxWidth": "400px", "resize": "none"}}
               />
             </div>
             }
@@ -153,7 +154,7 @@ const TodoList = () => {
                   {/* <span id="taskDeadlineDays">days</span> */}
                 </div>
               }
-              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "--h": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>
+              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "height": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>
             </div>
         </div>
         <div id="bottom-spacer"></div>

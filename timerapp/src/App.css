@@ -118,6 +118,11 @@
   color: white;
 }
 
+#taskTitle, #taskDescription, #taskDeadline {
+  position: relative;
+  left: 20px;
+}
+
 .form-left {
   margin-right: 25px;
 }
@@ -129,8 +134,18 @@
 #taskTitle, #taskDescription {
   border: 1px solid white;
   border-radius: 4px;
-  width: 250px;
   height: min-content;
+}
+
+#taskTitle {
+  height: 30px;
+  font-size: large;
+  width: 250px;
+}
+
+#taskDescription {
+  min-height: 50px;
+  min-width: 400px;
 }
 
 /* #taskDescription {
@@ -139,6 +154,7 @@
 
 #taskDeadline {
   width: 37px;
+  height: 30px;
   text-align: left;
   justify-content: left;
   border: 1px solid white;
@@ -152,7 +168,8 @@
 #taskDeadlineContainer {
   display: flex;
   position: relative;
-  right: 9px;
+  right: 180px;
+  bottom: 14px;
 }
 
 /* #addTaskButton {
