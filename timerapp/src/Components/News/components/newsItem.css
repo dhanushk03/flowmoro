@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@500&display=swap");
+
+
+/*.news-app {
+    display: flex;
+    justify-content: center;
+}
+
+.news-item {
+    width: 500px;
+    padding: 20px;
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
+.news-img {
+    width: 400px;
+}*/
+.card {
+    width: 360px;
+    height: 400px;
+    box-shadow: 0 0 4px #d4ecff;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #8b00ff;
+    overflow-y: scroll;
+    transition: all 0.3s ease;
+    color: var(--secondary-text-color);;
+}
+:root {
+    --primary-text-color: orange;
+    --secondary-text-color: white;
+    --accent-color: black;
+}
+
+
+.card:hover {
+    box-shadow: 1px 1px 8px #d4ecff;
+    background-color: #f9fdff;
+    color: black;
+    transform: translateY(-2px);
+}
+.title{
+    color: inherit;
+    font-style: bold;
+}
+
+.card-header img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 12px;
+    color: inherit;
+}
+
+.news-source {
+    margin-block: 12px;
+}
+.description{
+    color: inherit;
+    font-style: normal;
+}
+
