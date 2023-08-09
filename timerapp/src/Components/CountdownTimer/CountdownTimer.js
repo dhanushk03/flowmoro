@@ -477,6 +477,10 @@ const CountdownTimer = (props) => {
                         <p id="reseticon">&#8634;</p>
                     </button>
                     <button onClick={() => {
+                        if(!userSpecifiedTime) {
+                            alert(`Click the set time button to confirm ${counter == 1? "focus" : "break"} time`);
+                            return;
+                        }
                         setPaused(!paused);
                         if (initialPlay) {
                             setStartDate(moment().format('LL'));
