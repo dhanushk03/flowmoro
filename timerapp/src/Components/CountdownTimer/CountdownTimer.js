@@ -5,6 +5,8 @@ import "./CountdownTimer.css";
 import moment from "moment";
 import sound1 from "./positive-notification-new-level-152480.mp3";
 import sound2 from "./simple-short-call-loop-153308.mp3";
+import forward from "./fast-forward.png";
+import HackTimer from "./HackTimer.js";
 
 var defaultRemainingTimeWork = {
     seconds: '00',
@@ -116,7 +118,7 @@ const CountdownTimer = (props) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmodoro`;
+            document.title = `${remainingTime.hours != "00" ? remainingTime.hours + ":" : ""}${remainingTime.minutes}:${remainingTime.seconds} - Flowmoro`;
             if (!paused && userSpecifiedTime) {
                 updateRemainingTime();
                 if (isWork) {
@@ -141,7 +143,6 @@ const CountdownTimer = (props) => {
             localStorage.setItem('idToTitle', JSON.stringify(idToTitle));
             localStorage.setItem('numCompletedTasks', String(numCompletedTasks));
         }, 1000);
-        console.log("Num completed " + numCompletedTasks);
         return () => clearTimeout(intervalId);
     }, [remainingTime, paused]);
 
@@ -306,6 +307,20 @@ const CountdownTimer = (props) => {
         setPaused(true);
     }
 
+    function fastForward() {
+        if (isWork) {
+            setIsWork(false);
+            setBreakSession((prev) => prev + 1);
+            setRemainingTime(defaultRemainingTimeBreak);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
+        } else {
+            setIsWork(true);
+            setWorkSession((prev) => prev + 1);
+            setRemainingTime(defaultRemainingTimeWork);
+            setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
+        }
+    }
+
     const handleChange = (event) => {
         if (event.target.name === "inputHours") {
             setUserTimeInputHours(event.target.value);
@@ -328,14 +343,12 @@ const CountdownTimer = (props) => {
 
     function parseTime() {
         var time = Number(userTimeInputSeconds) + 60 * Number(userTimeInputMinutes) + 3600 * Number(userTimeInputHours);
-        console.log(time);
         return time
     }
 
     var x = isWork? remainingTimeInSeconds / defaultTotalTimeInSecondsWork : remainingTimeInSeconds / defaultTotalTimeInSecondsRest;
     var f = remainingTime.hours == "00" ? 90 : 68;
-    var offset = showTodos ? 163 : 0;
-    console.log(offset);
+    var offset = showTodos ? 165 : 0;
 
     return (
         <div className="todolistandtimer">
@@ -482,8 +495,9 @@ const CountdownTimer = (props) => {
                     </div>
                 </div>
                 <div className="countdown-buttons">
-                    <button onClick={resetTime} className="resetbutton">
-                        <p id="reseticon">&#8634;</p>
+                    <button onClick={fastForward} className="fastforwardbutton">
+                        {/* <img src={forward} width="50px" height="50px" /> */}
+                        <p id="fastforwardicon">&#8667;</p>
                     </button>
                     <button onClick={() => {
                         if(!userSpecifiedTime) {

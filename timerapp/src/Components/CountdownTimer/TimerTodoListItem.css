@@ -27,7 +27,7 @@
 
 .timertodolistitemcompletebutton:hover {
     background-color: white;
-    color: black;
+    color: orange;
     transition: 0.2s;
 }
 

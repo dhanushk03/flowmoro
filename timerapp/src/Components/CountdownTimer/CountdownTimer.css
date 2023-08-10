@@ -160,7 +160,7 @@
     margin-left: 3%; */
 }
 
-.resetbutton {
+.fastforwardbutton {
     width: 80px;
     height: 80px;
     color: white;
@@ -201,7 +201,7 @@
     /* margin-right: auto; */
 }
 
-.playbutton:hover, .resetbutton:hover, .endsessionbutton:hover {
+.playbutton:hover, .fastforwardbutton:hover, .endsessionbutton:hover {
     border: none;
     background-color: orange;
     cursor: pointer;
@@ -226,7 +226,7 @@
     border-color: #ffffff;
 }
 
-#reseticon {
+#fastforwardicon {
     transform: translateY(-6px);
 }
 

@@ -9,7 +9,7 @@ const Navbar = (props) => {
                 <NavLink to="/todolist" className={"navbar-item navbar-right"} activeClassName="active" activeStyle={{ color: "orange" }} id="todolistnav"> To-do List </NavLink>
                 <NavLink to="/timer" className={"navbar-item navbar-right"} activeClassName="active" activeStyle={{ color: "orange" }} id="timer"> Timer </NavLink>
                 <NavLink to="/focuslog" className={"navbar-item navbar-right"} activeClassName="active" activeStyle={{ color: "orange" }} id="studylognav"> Focus Log </NavLink>
-                <NavLink to="/news" className={"navbar-item navbar-right"} activeClassName="active" activeStyle={{ color: "orange" }} id="news"> News </NavLink>
+                <NavLink to="/news" className={"navbar-item navbar-right"} activeClassName="active" activeStyle={{ color: "orange" }} id="news"> News+ </NavLink>
         </div>
     );
 }

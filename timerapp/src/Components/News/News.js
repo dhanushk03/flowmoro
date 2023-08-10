@@ -110,7 +110,7 @@ function News(collection_name){
       </div>
     </div>
       
-    )
+    );
 }
 
-export default News
+export default News;

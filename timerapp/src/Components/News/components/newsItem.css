@@ -25,7 +25,7 @@
     background-color: #8b00ff;
     overflow-y: scroll;
     transition: all 0.3s ease;
-    color: var(--secondary-text-color);;
+    color: var(--secondary-text-color);
 }
 :root {
     --primary-text-color: orange;
@@ -43,6 +43,7 @@
 .title{
     color: inherit;
     font-style: bold;
+    white-space: initial;
 }
 
 .card-header img {

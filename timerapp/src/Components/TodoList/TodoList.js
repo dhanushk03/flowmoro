@@ -90,7 +90,7 @@ const TodoList = () => {
   }
 
   var radius = !showInputForm ? 50 : 0;
-  var width = !showInputForm ? 40 : 40;
+  var width = !showInputForm ? 127 : 40;
   var height = !showInputForm ? 80 : 40;
 
 
@@ -157,7 +157,7 @@ const TodoList = () => {
                   {/* <span id="taskDeadlineDays">days</span> */}
                 </div>
               }
-              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "height": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New Task</p></div>}</button>
+              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "width": width, "height": height}}>{showInputForm? <div className="addtodotext">&#8680;</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New Task</p></div>}</button>
             </div>
         </div>
         <div id="bottom-spacer"></div>
