@@ -13,16 +13,14 @@ const NewsItem = (props) => {
     var replacementURL = "https://via.placeholder.com/400x200"
     return (
             
-            <a href = {props.url}>
+            <a href = {props.url} target="_blank" rel="noreferrer">
                 <div className = "card">
                     <div className="card-header">
                         <img src = {props.image} alt = {replacementURL}/>
                     </div>
                     <div className = "card-content">
                         <h3>
-                            <a href = {props.url} className = "title" target="_blank" rel="noreferrer">
                                 {props.title}
-                            </a>
                         </h3>
                         <h6 className="news-source" id="news-source">{props.source} {props.published_at}</h6>
                         <p id = "news-description" className="description">
