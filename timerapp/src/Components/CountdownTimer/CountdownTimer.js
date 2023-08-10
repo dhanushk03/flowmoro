@@ -5,7 +5,6 @@ import "./CountdownTimer.css";
 import moment from "moment";
 import sound1 from "./positive-notification-new-level-152480.mp3";
 import sound2 from "./simple-short-call-loop-153308.mp3";
-import forward from "./fast-forward.png";
 import HackTimer from "./HackTimer.js";
 
 var defaultRemainingTimeWork = {
@@ -308,9 +307,15 @@ const CountdownTimer = (props) => {
     }
 
     function fastForward() {
+        if(!userSpecifiedTime) {
+            alert("Please set focus and break times before fast-forwarding sessions");
+            return;
+        }
         if (isWork) {
             setIsWork(false);
-            setBreakSession((prev) => prev + 1);
+            if (workSession != 1) {
+                setBreakSession((prev) => prev + 1);
+            }
             setRemainingTime(defaultRemainingTimeBreak);
             setRemainingTimeInSeconds(defaultTotalTimeInSecondsRest);
         } else {
@@ -462,6 +467,10 @@ const CountdownTimer = (props) => {
                                             hours: userTimeInputHours
                                         });
                                         defaultTotalTimeInSecondsWork = parseTime();
+                                        if (defaultTotalTimeInSecondsWork < 10) {
+                                            alert("Please set a focus duration greater than 10 seconds");
+                                            return;
+                                        }
                                         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
                                         defaultRemainingTimeWork = {
                                             seconds: userTimeInputSeconds,
@@ -475,6 +484,10 @@ const CountdownTimer = (props) => {
                                     }
                                     else if (counter == 2) {
                                         defaultTotalTimeInSecondsRest = parseTime();
+                                        if (defaultTotalTimeInSecondsRest < 10) {
+                                            alert("Please set a break duration greater than 10 seconds");
+                                            return;
+                                        }
                                         defaultRemainingTimeBreak = {
                                             seconds: userTimeInputSeconds,
                                             minutes: userTimeInputMinutes,

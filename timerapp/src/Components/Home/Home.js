@@ -64,9 +64,9 @@ const Home = () => {
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="promo-text">
-                                    <h3>View your entire productivity journey with our Focus Log feature.</h3>
+                                    <h3>View your entire productivity journey with our Focus Log feature</h3>
                                     <p>Track your work sessions in chronological order, gaining insights into time allocation and task completion. A click on each log will show you detailed information about the duration dedicated to each task as well as your completed tasks for any session in a single, organized view. This comprehensive approach empowers you to assess your progress over time and draw motivation from your achievements. Take control of your focus journey and gain a clear understanding of your accomplishments with our Focus Log.</p>
-                                    <a href="../studylog" class="button">Focus Log</a>
+                                    <a href="../focuslog" class="button">Focus Log</a>
                                 </div>
                             </div>
                             <div class="col-sm-6 align-right">

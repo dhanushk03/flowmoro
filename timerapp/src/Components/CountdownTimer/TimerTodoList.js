@@ -13,24 +13,26 @@ const TimerTodoList = (props) => {
         localStorage.setItem('todoList', JSON.stringify(todoList));
     }, [todoList]);
 
-    const completeTask = (id) => {
+    const completeTask = (id, e) => {
         var completedTask = null;
         todoList.forEach(item => {
           if (item.id == id) {
             completedTask = item;
           }
         });
-        deleteTask(id);
+        deleteTask(id, e);
+        e.stopPropagation();
     };
     
-    const deleteTask = (id) => {
+    const deleteTask = (id, e) => {
         setTimeout(function() {
             setTodoList(
             todoList.filter((item) => {
                 return item.id != id;
             })
             );
-        }, 200)
+        }, 200);
+        e.stopPropagation();
     };
     
     

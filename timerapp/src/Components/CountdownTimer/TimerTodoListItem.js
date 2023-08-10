@@ -23,7 +23,7 @@ const TimerTodoListItem = (props) => {
     initializeBackground();
 
     return (
-        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg, "color":textcolor}} onClick={() => {
+        <div className="timertodolistitem" id={`timertodolistitem${props.id}`} style={{"background":bg, "color":textcolor}} onClick={(e) => {
             var item = document.getElementById(`timertodolistitem${props.id}`);
             if (inProgress) {
                 item.style.background = "#7b00e8";
@@ -35,11 +35,12 @@ const TimerTodoListItem = (props) => {
                 setInProgress(true);
             }
             props.updateActive(props.id, props.title);
+            e.stopPropagation();
         }}>
             {/* <button onClick={props.completeTask(props.id)} className="timertodolistitemcompletebutton" style={{"float": "right", "height": "10px", "width": "10px"}}>
                 &#10003;
             </button> */}
-            <div className="timertodolistitemcompletebutton" onClick={() => {props.completeTask(props.id); props.incrementCompleted((prev) => {return prev + 1;});}}>&#10003;</div>
+            <div className="timertodolistitemcompletebutton" onClick={(e) => {props.completeTask(props.id, e); props.incrementCompleted((prev) => {return prev + 1;});}}>&#10003;</div>
             {/* <p style={{"float": "right"}}>Sample text</p> */}
             <h4 className="timertodotitle">{props.title}</h4>
         </div>

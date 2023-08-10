@@ -56,7 +56,7 @@ const TodoList = () => {
     setEditing(false);
   };
 
-  const completeTask = (id) => {
+  const completeTask = (id, e) => {
     var completedTask = null;
     todoList.forEach(item => {
       if (item.id == id) {
@@ -65,19 +65,21 @@ const TodoList = () => {
     });
     setCompletedList([completedTask, ...completedList]);
     deleteTask(id);
+    e.stopPropagation();
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id, e) => {
     setTimeout(function() {
       setTodoList(
         todoList.filter((item) => {
           return item.id != id;
         })
       );
-    }, 200)
+    }, 200);
+    e.stopPropagation();
   };
 
-  const editTask = (id) => {
+  const editTask = (id, e) => {
     const filteredList = todoList.filter(item => item.id != id);
     setTodoList(filteredList);
     const editItem = todoList.find(item => item.id == id);
@@ -87,6 +89,7 @@ const TodoList = () => {
     setTaskDescription(editItem.description);
     setTaskDeadline(editItem.deadline);
     setTaskId(editItem.id);
+    e.stopPropagation();
   }
 
   var radius = !showInputForm ? 50 : 0;

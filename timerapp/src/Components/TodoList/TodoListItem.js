@@ -33,20 +33,20 @@ const TodoListItem = (props) => {
 
     return (
       <div className="task">
-        <div className="content" onClick={() => {expandAndCollapseDescription();}} onMouseEnter={expandButtons} onMouseLeave={collapseButtons}>
+        <div className="content" onClick={(e) => {expandAndCollapseDescription(); e.stopPropagation();}} onMouseEnter={expandButtons} onMouseLeave={collapseButtons}>
           <div className="metadata">
             <div className="buttons" id={`buttons${props.id}`}>
               <button className="editButton"
-                onClick={() => {
-                  props.editTask(props.id);
+                onClick={(e) => {
+                  props.editTask(props.id, e);
                 }}
                 >
                   &#9998;
               </button>
 
               <button className="completeButton"
-              onClick={() => {
-                props.completeTask(props.id);
+              onClick={(e) => {
+                props.completeTask(props.id, e);
               }}
               >
                 {/* Complete */}
@@ -54,8 +54,8 @@ const TodoListItem = (props) => {
               </button>
 
               <button className="deleteButton"
-              onClick={() => {
-                props.deleteTask(props.id);
+              onClick={(e) => {
+                props.deleteTask(props.id, e);
               }}
               >
                 {/* Delete */}
