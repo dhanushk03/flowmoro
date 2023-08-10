@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
+import { useState } from "react";
 import Navbar from "./Components/Navbar.js";
 import Home from "./Components/Home/Home.js";
 import CountdownTimer from "./Components/CountdownTimer/CountdownTimer.js";
@@ -10,7 +11,7 @@ import News from "./Components/News/News.js"
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
         <Navbar />
         <Routes>

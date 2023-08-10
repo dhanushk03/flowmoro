@@ -5,8 +5,9 @@
   padding: 0;
   /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll; */
   /* background: linear-gradient(45deg, #da61ff, green) scroll; */
-  background: linear-gradient(45deg, purple, blue);
-  background-size: 400% 400%;
+  background: linear-gradient(45deg, purple 25%, blue);
+  background-attachment: fixed;
+  background-size: 300% 300%;
   /* animation: gradient_anim 60s ease infinite; */
 }
 

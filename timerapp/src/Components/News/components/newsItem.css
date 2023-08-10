@@ -43,6 +43,7 @@
 .title{
     color: inherit;
     font-style: bold;
+    white-space: initial;
 }
 
 .card-header img {
