@@ -26,6 +26,7 @@ const StudyLog = () => {
                         startDate={item.startDate}
                         startTime={item.startTime}
                         endTime={item.endTime}
+                        numCompletedTasks={item.numCompletedTasks}
                         id={uuidv4()}
                     />
                 )}

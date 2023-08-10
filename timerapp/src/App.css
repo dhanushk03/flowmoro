@@ -1,12 +1,12 @@
 .App {
   min-width: 100vw;
   min-height: 100vh;
+  width: min-content;
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(45deg, rgb(58, 15, 88), #da61ff, green) scroll; */
-  /* background: linear-gradient(45deg, #da61ff, green) scroll; */
-  background: linear-gradient(45deg, purple, blue);
-  background-size: 400% 400%;
+  background: linear-gradient(45deg, purple 15%, blue);
+  background-attachment: fixed;
+  background-size: 300% 300%;
   /* animation: gradient_anim 60s ease infinite; */
 }
 
@@ -18,9 +18,10 @@
   align-items: center;
   gap: 2rem;
   padding: 10px 25px;
+  min-width: 800px;
 }
 
-.navbar li, .navbar .navbar-item, .active {
+.navbar li, .navbar .navbar-item {
   color: inherit;
   text-decoration: none;
   height: 100%;
@@ -28,7 +29,6 @@
   padding: .25rem;
   font-family: "San Francisco";
   font-size: 18px;
-  opacity: 0.8;
 }
 
 .flmdlogo {
@@ -43,7 +43,7 @@
   align-items: center;
 }
 
-#timer {
+#todolist-nav {
   margin-left: auto;
 }
 
@@ -65,10 +65,6 @@
   transition: 0.2s;
   opacity: 1;
 }
-
-/* .active {
-  color: blue;
-} */
 
 #todoList {
   margin-left: auto;
@@ -198,11 +194,7 @@
   cursor: pointer;
   /* background-color: orange; */
   background: orange;
-  transition: 0.2s;
-}
-
-.addtodotext:hover {
-  background: orange;
+  transition: 0.5s;
 }
 
 .createtaskbutton {
@@ -229,6 +221,10 @@
 
 ::placeholder {
   color: white;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 #bottom-spacer {

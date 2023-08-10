@@ -33,9 +33,10 @@ const TimerTodoList = (props) => {
         }, 200)
     };
     
+    
     return (
         <div className="timertodolist">
-            <h3 style={{"textAlign": "center"}}>Click on the to-dos you're working on. &#10003; them off when completed.</h3>
+            <h3 style={{"textAlign": "center"}}>Click on the tasks you're working on. &#10003; them off when completed.</h3>
             {/* <hr style={{height:"1px"}}></hr> */}
             {todoList.map((item) => {
                 return (
@@ -47,11 +48,12 @@ const TimerTodoList = (props) => {
                             updateActive={props.updateActive}
                             isActive={props.isActive}
                             completeTask={completeTask}
+                            incrementCompleted={props.incrementCompleted}
                         />
-                        {/* <hr style={{height:"1px"}}></hr> */}
                     </div>
-                );
-            })}
+                    );}
+                )
+            }
         </div>
     );
 }

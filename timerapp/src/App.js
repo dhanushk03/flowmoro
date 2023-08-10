@@ -15,9 +15,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/timer" element={<CountdownTimer />} />
           <Route path="/todolist" element={<TodoList />} />
-          <Route path="/studylog" element={<StudyLog />} />
+          <Route path="/timer" element={<CountdownTimer />} />
+          <Route path="/focuslog" element={<StudyLog />} />
           <Route path="/news" element={<News />} />
         </Routes>
       </Router>

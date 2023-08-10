@@ -107,7 +107,12 @@ const CountdownTimer = (props) => {
     const [idToTitle, setIdToTitle] = useState(() => {
         const mapping = JSON.parse(localStorage.getItem('idToTitle'));
         return mapping ? mapping : {};
-    })
+    });
+
+    const [numCompletedTasks, setNumCompletedTasks] = useState(() => {
+        const num = Number(localStorage.getItem('numCompletedTasks'));
+        return num ? num : 0;
+    });
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -134,9 +139,9 @@ const CountdownTimer = (props) => {
             localStorage.setItem('startTime', String(startTime));
             localStorage.setItem('endTime', String(endTime));
             localStorage.setItem('idToTitle', JSON.stringify(idToTitle));
+            localStorage.setItem('numCompletedTasks', String(numCompletedTasks));
         }, 1000);
-        console.log(activeTasks);
-        console.log(studySession);
+        console.log("Num completed " + numCompletedTasks);
         return () => clearTimeout(intervalId);
     }, [remainingTime, paused]);
 
@@ -257,13 +262,14 @@ const CountdownTimer = (props) => {
     }
 
     function endSession() {
-        if (!userSpecifiedTime) {
+        if (!userSpecifiedTime || (workSession == 1 && remainingTimeInSeconds == defaultTotalTimeInSecondsWork)) {
+            alert("Start focus session by pressing play");
             return;
         }
         async function updateEndTime() {
             const time = await moment().format('LT');
             setEndTime(time);
-            console.log(endTime);
+            // console.log(endTime);
             localStorage.setItem('endTime', JSON.stringify(endTime));
         }
         updateEndTime();
@@ -277,7 +283,7 @@ const CountdownTimer = (props) => {
         setRemainingTimeInSeconds(defaultTotalTimeInSecondsWork);
         localStorage.setItem("remainingTimeInSeconds", String(defaultTotalTimeInSecondsWork));
         setPaused(true);
-        setStudyLog([{"studySession": {...studySession}, "idToTitle": {...idToTitle}, "startDate": startDate, "startTime": startTime, "endTime": endTime}, ...studyLog]);
+        setStudyLog([{"studySession": {...studySession}, "idToTitle": {...idToTitle}, "startDate": startDate, "startTime": startTime, "endTime": endTime, "numCompletedTasks": numCompletedTasks}, ...studyLog]);
         localStorage.setItem("studyLog", JSON.stringify(studyLog));
         setStudySession({});
         localStorage.setItem("studySession", JSON.stringify(studySession));
@@ -285,6 +291,8 @@ const CountdownTimer = (props) => {
         localStorage.setItem("activeTasks", JSON.stringify(activeTasks));
         setIdToTitle({});
         localStorage.setItem("idToTitle", JSON.stringify(idToTitle));
+        setNumCompletedTasks(0);
+        localStorage.setItem('numCompletedTasks', String(0));
     }
 
     function resetTime() {
@@ -338,7 +346,7 @@ const CountdownTimer = (props) => {
                 }}} className="showtodosbutton">
                     &#9776;
                 </button>
-                {showTodos && <TimerTodoList updateActive={updateActive} isActive={isActive}/>}
+                {showTodos && <TimerTodoList updateActive={updateActive} isActive={isActive} incrementCompleted={setNumCompletedTasks}/>}
             </div>
             <div style={{"--offset": offset}} className="countdown-wrapper">
                 {userSpecifiedTime ?
@@ -360,7 +368,8 @@ const CountdownTimer = (props) => {
                                 </span>
                                 :
                                 <span>
-                                    <input 
+                                    <input
+                                        autofocus
                                         type="text"
                                         name="inputHours"
                                         id="inputHours"

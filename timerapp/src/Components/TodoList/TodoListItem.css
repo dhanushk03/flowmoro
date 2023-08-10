@@ -88,17 +88,17 @@
 
 .completeButton:hover {
     background: green;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .editButton:hover, .taskdownarrow:hover {
     background: orange;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .deleteButton:hover {
     background: red;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .tasktitle {

@@ -41,6 +41,10 @@ const TodoList = () => {
     if (!taskTitle) {
       return;
     }
+    if (todoList.length >= 150) {
+      alert("Limit of 150 active todos reached. Please resolve some todos before adding more");
+      return;
+    }
     const addedId = taskId == null? uuidv4() : taskId;
     const newTask = { title: taskTitle, description: taskDescription, deadline: taskDeadline, id: addedId, dateAdded: moment().format('LL') };
     setTodoList([...todoList, newTask]);
@@ -93,7 +97,7 @@ const TodoList = () => {
   return (
     <div id="todoList">
         <div>
-          <h2 className="numtaskspending" style={{"textAlign": "center", "color": "white"}}>{todoList.length} tasks pending</h2>
+          <h2 className="numtaskspending" style={{"textAlign": "center", "color": "white"}}>{todoList.length > 0? todoList.length : "No"} task{todoList.length == 1? "" : "s"} pending</h2>
         </div>
         <div id="taskList">
             {todoList.map((item) => {
@@ -114,7 +118,6 @@ const TodoList = () => {
               );
             })}
             <hr className="taskdivider" id="bottom-divider"></hr>
-            {todoList.length == 0 && <h1 id="emptymessage">No items pending</h1>}
         </div>
         <div id="addTaskForm">
             {showInputForm &&
@@ -154,7 +157,7 @@ const TodoList = () => {
                   {/* <span id="taskDeadlineDays">days</span> */}
                 </div>
               }
-              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "height": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New To-do</p></div>}</button>
+              <button onClick={addTask} id="addTaskButton" style={{"--r": radius, "--w": width, "height": height}}>{showInputForm? <div className="addtodotext">{!editing? "Add" : "Edit"} To-do</div> : <div className="createtaskbutton"><p className="plussign">&#65122;</p> <p>New Task</p></div>}</button>
             </div>
         </div>
         <div id="bottom-spacer"></div>
