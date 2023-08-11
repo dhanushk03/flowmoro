@@ -21,7 +21,6 @@ const TimerTodoList = (props) => {
           }
         });
         deleteTask(id, e);
-        e.stopPropagation();
     };
     
     const deleteTask = (id, e) => {

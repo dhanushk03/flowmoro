@@ -36,7 +36,7 @@ const StudyLogItem = (props) => {
         <div className="studylogitem">
             <div className="studylogitemheader" onClick={() => {expandLogDetails();}}>
                 <h2>{props.startDate}</h2>
-                <h3 style={{"marginTop": "-10px"}}>{props.startTime} &#160; - &#160; {props.endTime} &#160;&#x2022;&#160; {numTasks} tasks worked on &#160;&#x2022;&#160; {props.numCompletedTasks ? props.numCompletedTasks : 0} completed</h3>
+                <h3 style={{"marginTop": "-10px"}}>{props.startTime} &#160; - &#160; {props.endTime} &#160;&#x2022;&#160; {Math.max(numTasks, props.numCompletedTasks)} tasks worked on &#160;&#x2022;&#160; {props.numCompletedTasks ? props.numCompletedTasks : 0} completed</h3>
             </div>
             <div className="sessionData" id={`studylogdescription${props.id}`} style={{"display": "none"}}>
                 {

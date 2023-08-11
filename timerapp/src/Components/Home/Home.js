@@ -92,7 +92,7 @@ const Home = () => {
                             <div class="col-sm-6">
                                 <div class="promo-text">
                                     <h3>Recharge with our News+ feature</h3>
-                                    <p>Stay connected to the world's bright side by browsing up-to-date positive news across seven major categories. Each article card serves as a quick glimpse of the most uplifting stories from recent news. With a simple click, you can explore the full news article for more information. Whether it's a short pause or a more extended break, our Positive News feature lets you infuse your downtime with optimism and stay informed about the positive developments around the globe.</p>
+                                    <p>Stay connected to the world's bright side by browsing up-to-date positive news across seven major categories. Each article card serves as a quick glimpse of the most uplifting stories available from reputable media networks. Whether it's a short pause or a more extended break, our News+ feature lets you infuse your downtime with optimism and stay informed about the positive developments around the globe.</p>
                                     <a href="../news" class="button">News+</a>
                                 </div>                     
                             </div>

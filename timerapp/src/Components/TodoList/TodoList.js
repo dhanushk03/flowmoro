@@ -64,8 +64,7 @@ const TodoList = () => {
       }
     });
     setCompletedList([completedTask, ...completedList]);
-    deleteTask(id);
-    e.stopPropagation();
+    deleteTask(id, e);
   };
 
   const deleteTask = (id, e) => {
